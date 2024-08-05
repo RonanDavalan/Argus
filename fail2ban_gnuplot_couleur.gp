@@ -1,5 +1,5 @@
 # Spécification du répertoire contenant les fichiers .txt
-#repertoire = "/home/user/$(date +%Y)"
+#repertoire = "$HOME/$(date +%Y)"
 repertoire = system("date +%Y | tr -d '\n'")
 
 # Définir la variable de sortie

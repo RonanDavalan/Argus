@@ -1,22 +1,76 @@
-# README pour les Scripts d'Analyse Fail2Ban
+# Projet d'Analyse Fail2Ban
 
-## Introduction
-Ce document décrit la mise en place de scripts pour compter et reporter sur un graphique généré tous les jours avec Gnuplot les tentatives de connexion repérées conduisant au bannissement d'adresses IP par Fail2Ban sur un serveur. Fail2Ban protège le serveur contre les attaques par force brute en bannissant les adresses IP malveillantes.
+## Description
+Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bloquées par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques pour aider à comprendre les tendances des attaques et l'efficacité de la protection Fail2Ban.
 
-## Scripts
-Deux scripts sont utilisés :
-1. Un script bash pour extraire les données des logs de Fail2Ban.
-2. Un script Gnuplot pour générer un graphique à partir des données extraites.
+## Fonctionnalités
+- Extraction quotidienne des adresses IP bannies à partir des logs Fail2Ban
+- Génération de graphiques montrant le nombre d'adresses IP bannies par jour pour chaque service
+- Organisation des données et graphiques par année
+- Automatisation via des tâches cron
 
-## Suivi des Adresses IP Bannies
-Le script bash extrait et enregistre les adresses IP bannies chaque jour. Les résultats sont stockés dans des répertoires organisés par année.
+## Prérequis
+- Fail2Ban installé et configuré sur le serveur
+- Bash
+- Gnuplot
+- Accès aux logs système (rsyslog ou journalctl)
 
-## Automatisation
-Des tâches cron peuvent être configurées pour exécuter automatiquement les scripts de suivi et de génération de rapports quotidiens.
+## Structure du Projet
+```
+/
+├── opt/
+│   └── script_principal_rsyslog.sh (ou script_principal_journalctl.sh)
+├── home/user/
+│   ├── fail2ban_gnuplot_couleur.gp
+│   └── [ANNÉE]/
+│       ├── ip_ban_[SERVICE]_[ANNÉE].txt
+│       └── images/
+│           └── [DATE]_ip_ban_fail2ban_4k.png
+```
 
-## Génération de Graphiques
-Le script Gnuplot génère un graphique quotidien montrant le nombre d'adresses IP bannies par jour pour chaque service configuré dans Fail2Ban.
+## Installation et Configuration
 
-## Conclusion
-Ces scripts permettent une représentation visuelle des différentes tentatives de connexion filtrées par Fail2Ban, sans modifier la configuration de Fail2Ban elle-même.
+1. Placez `script_principal_rsyslog.sh` (ou `script_principal_journalctl.sh`) dans `/opt/`.
+2. Placez `fail2ban_gnuplot_couleur.gp` dans le répertoire home de l'utilisateur.
+3. Créez les répertoires nécessaires pour les données et les images.
+4. Configurez les variables dans les scripts :
+   - Dans `script_principal_rsyslog.sh` :
+     ```bash
+     repertoire_destination="$HOME/$(date -d yesterday +%Y)"
+     utilisateur="votre_utilisateur"
+     groupe="votre_groupe"
+     ```
+   - Assurez-vous que les chemins dans `fail2ban_gnuplot_couleur.gp` correspondent à votre structure de répertoires.
 
+5. Configurez les tâches cron :
+   ```
+   # Pour l'extraction des données
+   5 0 * * * /opt/script_principal_rsyslog.sh >> /var/log/suivi_bannissements_fail2ban.log 2>&1
+
+   # Pour la génération du graphique
+   15 0 * * * cd /home/user && gnuplot fail2ban_gnuplot_couleur.gp && chmod 600 /home/user/[ANNÉE]/images/*
+   ```
+
+## Utilisation
+Une fois configuré, le système fonctionnera automatiquement :
+1. Chaque jour à 00:05, le script d'extraction des données s'exécutera.
+2. À 00:15, le script Gnuplot générera le graphique quotidien.
+
+Les résultats seront stockés dans les répertoires appropriés, organisés par année.
+
+## Personnalisation
+- Modifiez `fail2ban_gnuplot_couleur.gp` pour ajuster l'apparence des graphiques.
+- Ajustez les horaires des tâches cron selon vos besoins.
+
+## Sécurité
+- Les fichiers de données et les images sont créés avec des permissions restreintes (600).
+- Assurez-vous que seuls les utilisateurs autorisés ont accès aux scripts et aux données générées.
+
+## Contribution
+Ce projet a été développé par Ronan DAVALAN. Les contributions sont les bienvenues. Veuillez soumettre des pull requests pour toute amélioration ou correction de bugs.
+
+## Licence
+Ce projet est sous licence MIT.
+
+## Remerciements
+Ce projet a été développé avec l'aide de divers assistants IA, notamment Perplexity AI et ChatGPT.
