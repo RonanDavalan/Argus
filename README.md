@@ -73,4 +73,4 @@ Ce projet a été développé par Ronan DAVALAN. Les contributions sont les bien
 Ce projet est sous licence MIT.
 
 ## Remerciements
-Ce projet a été développé avec l'aide de divers assistants IA, notamment Perplexity AI et ChatGPT.
+Ce projet a été développé avec l'aide de divers assistants IA, notamment ChatGPT, Claude AI et Perplexity AI.
