@@ -33,3 +33,9 @@ Il est recommandé de configurer une tâche cron pour exécuter ce script quotid
 ## Exemple de tâche cron
 Pour automatiser l'exécution du script, ajoutez la ligne suivante à votre crontab :
 
+0 1 * * * /chemin/vers/votre/script.sh
+
+Cela exécutera le script tous les jours à 1h00 du matin.
+
+## Maintenance
+Vérifiez régulièrement les fichiers générés pour vous assurer que les données sont correctement enregistrées et que l'espace disque est suffisant.
