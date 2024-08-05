@@ -6,7 +6,7 @@ repertoire = system("date +%Y | tr -d '\n'")
 output_date = system("date +%F | tr -d '\n'")
 
 # Spécification du fichier de sortie
-set output sprintf("%s/images/%s_ip_ban_fail2ban_4k.png", repertoire, output_date)
+set output sprintf("%s/images/%s_fail2ban_gnuplot_couleur.png", repertoire, output_date)
 
 
 # Paramètres du graphique
