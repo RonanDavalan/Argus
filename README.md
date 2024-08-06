@@ -1,13 +1,13 @@
-# Projet d'analyse de tentatives de connexion bannies par Fail2Ban
+# Visualisation Cumulative Quotidienne des Bannissements par Fail2Ban
 
 ![IP Ban avec Fail2Ban](images/2024-08-06_ip_ban_fail2ban_1080.png)
 
 ## Description
-Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bloquées par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques permettant d'observer les tendances des attaques détectées par les différents filtres de Fail2Ban activés. 
+Ce projet fournit des scripts pour analyser et visualiser la quantité d'adresses IP bannies par Fail2Ban sur un serveur. Il génère une image journalière qui tient compte des jours précédents, permettant d'observer l'évolution cumulative des bannissements effectués par les différents filtres de Fail2Ban activés.
 
 ## Fonctionnalités
-- Extraction quotidienne des tentatives de connexion bannies à partir des logs de Fail2Ban, basée sur des adresses IP
-- Génération de graphiques montrant le nombre de tentatives bannies par jour pour chaque service
+- Extraction quotidienne du nombre d'adresses IP bannies à partir des logs de Fail2Ban, sans enregistrer les adresses IP elles-mêmes
+- Génération d'un graphique quotidien montrant le nombre de adresse IP bannies par jour pour chaque service
 - Organisation des données et graphiques par année
 - Automatisation via des tâches cron
 
