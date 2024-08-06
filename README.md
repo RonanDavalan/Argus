@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Projet d'analyse de tentatives de connexion bannies par Fail2Ban
+=======
+# Projet d'Analyse de tentatives de connexion bannies par Fail2Ban
+>>>>>>> suivi_des_ip_bannies_avec_fail2ban/main
 
 ![IP Ban avec Fail2Ban](images/2024-08-06_ip_ban_fail2ban_1080.png)
 
