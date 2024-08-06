@@ -1,11 +1,11 @@
 # Projet d'Analyse Fail2Ban
 
 ## Description
-Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bloquées par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques pour aider à comprendre les tendances des attaques et l'efficacité de la protection Fail2Ban.
+Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bannies par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques pour aider à comprendre les tendances des attaques et l'efficacité de la protection Fail2Ban.
 
 ## Fonctionnalités
-- Extraction quotidienne des adresses IP bannies à partir des logs Fail2Ban
-- Génération de graphiques montrant le nombre d'adresses IP bannies par jour pour chaque service
+- Extraction quotidienne des tentatives de connexion bannies à partir des logs Fail2Ban, basée sur des adresses IP
+- Génération de graphiques montrant le nombre de tentatives bannies par jour pour chaque service
 - Organisation des données et graphiques par année
 - Automatisation via des tâches cron
 
@@ -19,9 +19,9 @@ Ce projet fournit des scripts pour analyser et visualiser les tentatives de conn
 ```
 /
 ├── opt/
-│   └── script_principal_rsyslog.sh (ou script_principal_journalctl.sh)
+│   └── extraction_fail2ban_rsyslog.sh (ou extraction_fail2ban_journalctl.sh)
 ├── home/user/
-│   ├── fail2ban_gnuplot_couleur.gp
+│   ├── graphique_bannissements_fail2ban.gp
 │   └── [ANNÉE]/
 │       ├── ip_ban_[SERVICE]_[ANNÉE].txt
 │       └── images/
@@ -29,37 +29,36 @@ Ce projet fournit des scripts pour analyser et visualiser les tentatives de conn
 ```
 
 ## Installation et Configuration
+1. Placez le script d'extraction approprié dans `/opt/` :
+   - Pour rsyslog : `extraction_fail2ban_rsyslog.sh`
+   - Pour journalctl : `extraction_fail2ban_journalctl.sh`
 
-1. Placez `script_principal_rsyslog.sh` (ou `script_principal_journalctl.sh`) dans `/opt/`.
-2. Placez `fail2ban_gnuplot_couleur.gp` dans le répertoire home de l'utilisateur.
+2. Placez `graphique_bannissements_fail2ban.gp` dans le répertoire home de l'utilisateur.
+
 3. Créez les répertoires nécessaires pour les données et les images.
+
 4. Configurez les variables dans les scripts :
-   - Dans `script_principal_rsyslog.sh` :
+   - Dans le script d'extraction (rsyslog ou journalctl) :
      ```bash
-     repertoire_destination="$HOME/$(date -d yesterday +%Y)"
-     utilisateur="votre_utilisateur"
-     groupe="votre_groupe"
+     REPERTOIRE_DESTINATION="/home/votre_utilisateur/$(date -d yesterday +%Y)"
+     UTILISATEUR="votre_utilisateur"
+     GROUPE="votre_groupe"
      ```
-   - Assurez-vous que les chemins dans `fail2ban_gnuplot_couleur.gp` correspondent à votre structure de répertoires.
+   - Il est fortement recommandé de personnaliser ces variables selon votre environnement spécifique.
+   - Assurez-vous que les chemins dans `graphique_bannissements_fail2ban.gp` correspondent à votre structure de répertoires.
 
 5. Configurez les tâches cron :
    ```
    # Pour l'extraction des données
-   5 0 * * * /opt/script_principal_rsyslog.sh >> /var/log/suivi_bannissements_fail2ban.log 2>&1
+   5 0 * * * /opt/extraction_fail2ban_rsyslog.sh >> /var/log/suivi_bannissements_fail2ban.log 2>&1
 
    # Pour la génération du graphique
-   15 0 * * * cd /home/user && gnuplot fail2ban_gnuplot_couleur.gp && chmod 600 /home/user/[ANNÉE]/images/*
+   15 0 * * * cd /home/votre_utilisateur && gnuplot graphique_bannissements_fail2ban.gp && chmod 600 /home/votre_utilisateur/[ANNÉE]/images/*
    ```
 
-## Utilisation
-Une fois configuré, le système fonctionnera automatiquement :
-1. Chaque jour à 00:05, le script d'extraction des données s'exécutera.
-2. À 00:15, le script Gnuplot générera le graphique quotidien.
-
-Les résultats seront stockés dans les répertoires appropriés, organisés par année.
-
 ## Personnalisation
-- Modifiez `fail2ban_gnuplot_couleur.gp` pour ajuster l'apparence des graphiques.
+- Il est crucial de personnaliser les variables dans les scripts selon votre environnement spécifique. Cela inclut les chemins de répertoires, les noms d'utilisateur et de groupe, et tout autre paramètre spécifique à votre système.
+- Vous pouvez ajuster les noms de fichiers générés en modifiant les scripts si vous préférez une nomenclature différente.
 - Ajustez les horaires des tâches cron selon vos besoins.
 
 ## Sécurité

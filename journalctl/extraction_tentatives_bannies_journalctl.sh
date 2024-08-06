@@ -4,8 +4,8 @@
 # Nom du développeur : Ronan DAVALAN
 # Date : 05/08/2024
 # Licence : MIT
-# Usage : Ce script recherche et enregistre les adresses IP bannies du jour précédent à partir des journaux fail2ban.
-#
+# Usage : Ce script recherche et enregistre les adresses IP bannies du jour précédent à partir des journaux systemd avec journalctl.
+
 # Assistants IA utilisés au cours du développement :
 # - Perplexity AI (perplexity.ai)
 # - ChatGPT (openai.com)
@@ -13,9 +13,9 @@
 
 # -------------------------------------------------
 # Définition des variables
-repertoire_destination="/home/user/$(date -d yesterday +%Y)"
-utilisateur="user"
-groupe="user"
+repertoire_destination="/home/nom_utilisateur/$(date -d yesterday +%Y)"
+utilisateur="nom_utilisateur"
+groupe="nom_groupe"
 
 # -------------------------------------------------
 # Arrêt du script en cas d'erreur
@@ -26,12 +26,12 @@ set -Eeuo pipefail
 grep '^\[.*\]' /etc/fail2ban/jail.local | grep -v '\[DEFAULT\]' | \
 awk -F'[][]' '{
     # Construction de la commande pour chaque service
-    print "zgrep '\''Ban'\'' /var/log/fail2ban.log* | \
-           zgrep -v '\''Restore Ban'\'' | \
+    print "journalctl --since=\"yesterday\" --until=\"today\" | \
+           grep '\''Ban'\'' | \
            grep '\''\\[" $2 "\\]'\'' | \
+           grep \"$(date -d yesterday '+%Y-%m-%d')\" | \
            awk '\''{print $1}'\'' | \
            cut -d \":\" -f 2 | \
-           grep \"$(date -d yesterday '+%Y-%m-%d')\" | \
            sort | uniq -c >> $repertoire_destination/ip_ban_" $2 "_$(date +%Y).txt && \
            chmod 600 $repertoire_destination/ip_ban_" $2 "_$(date +%Y).txt && \
            chown $utilisateur:$groupe $repertoire_destination/ip_ban_" $2 "_$(date +%Y).txt"

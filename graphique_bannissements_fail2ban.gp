@@ -1,12 +1,12 @@
 # Spécification du répertoire contenant les fichiers .txt
-#repertoire = "$HOME/$(date +%Y)"
+#repertoire = "/home/nom_utilisateur/$(date +%Y)"
 repertoire = system("date +%Y | tr -d '\n'")
 
 # Définir la variable de sortie
 output_date = system("date +%F | tr -d '\n'")
 
 # Spécification du fichier de sortie
-set output sprintf("%s/images/%s_fail2ban_gnuplot_couleur.png", repertoire, output_date)
+set output sprintf("%s/images/%s_graphique_bannissements_fail2ban.png", repertoire, output_date)
 
 
 # Paramètres du graphique
