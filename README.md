@@ -1,5 +1,7 @@
 # Projet d'Analyse Fail2Ban
 
+![IP Ban avec Fail2Ban](images/2024-08-06_ip_ban_fail2ban_1080.png)
+
 ## Description
 Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bannies par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques pour aider à comprendre les tendances des attaques et l'efficacité de la protection Fail2Ban.
 
