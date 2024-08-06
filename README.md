@@ -1,12 +1,12 @@
-# Projet d'Analyse Fail2Ban
+# Projet d'analyse de tentatives de connexion bannies par Fail2Ban
 
 ![IP Ban avec Fail2Ban](images/2024-08-06_ip_ban_fail2ban_1080.png)
 
 ## Description
-Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bannies par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques pour aider à comprendre les tendances des attaques et l'efficacité de la protection Fail2Ban.
+Ce projet fournit des scripts pour analyser et visualiser les tentatives de connexion bloquées par Fail2Ban sur un serveur. Il génère des rapports quotidiens et des graphiques permettant d'observer les tendances des attaques détectées par les différents filtres de Fail2Ban activés. 
 
 ## Fonctionnalités
-- Extraction quotidienne des tentatives de connexion bannies à partir des logs Fail2Ban, basée sur des adresses IP
+- Extraction quotidienne des tentatives de connexion bannies à partir des logs de Fail2Ban, basée sur des adresses IP
 - Génération de graphiques montrant le nombre de tentatives bannies par jour pour chaque service
 - Organisation des données et graphiques par année
 - Automatisation via des tâches cron
@@ -46,7 +46,7 @@ Ce projet fournit des scripts pour analyser et visualiser les tentatives de conn
      UTILISATEUR="votre_utilisateur"
      GROUPE="votre_groupe"
      ```
-   - Il est fortement recommandé de personnaliser ces variables selon votre environnement spécifique.
+   - Il est fortement recommandé de personnaliser ces variables selon votre environnement.
    - Assurez-vous que les chemins dans `graphique_bannissements_fail2ban.gp` correspondent à votre structure de répertoires.
 
 5. Configurez les tâches cron :
@@ -59,7 +59,7 @@ Ce projet fournit des scripts pour analyser et visualiser les tentatives de conn
    ```
 
 ## Personnalisation
-- Il est crucial de personnaliser les variables dans les scripts selon votre environnement spécifique. Cela inclut les chemins de répertoires, les noms d'utilisateur et de groupe, et tout autre paramètre spécifique à votre système.
+- Personnaliser les variables dans les scripts selon votre environnement spécifique. Cela inclut les chemins de répertoires, les noms d'utilisateur et de groupe, et tout autre paramètre spécifique à votre système.
 - Vous pouvez ajuster les noms de fichiers générés en modifiant les scripts si vous préférez une nomenclature différente.
 - Ajustez les horaires des tâches cron selon vos besoins.
 
