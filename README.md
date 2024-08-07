@@ -68,7 +68,7 @@ Ce projet fournit des scripts pour analyser et visualiser la quantité d'adresse
 - Assurez-vous que seuls les utilisateurs autorisés ont accès aux scripts et aux données générées.
 
 ## Contribution
-Ce projet a été développé par Ronan DAVALAN. Les contributions sont les bienvenues. Veuillez soumettre des pull requests pour toute amélioration ou correction de bugs.
+Les contributions sont les bienvenues. Veuillez soumettre des pull requests pour toute amélioration ou correction de bugs.
 
 ## Licence
 Ce projet est sous licence MIT.
