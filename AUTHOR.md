@@ -2,7 +2,7 @@
 
 ## Bio
 
-Ronan Davalan (https://davalan.fr) - Photographe professionnel et développeur passionné. Il contribue activement à des projets open source et travaille sur l'installation de serveur virtuel privé debian pour le projet AllSys (https://allsys.io/)
+Ronan Davalan (https://davalan.fr) est un photographe professionnel et un développeur passionné. Il contribue activement à des projets open source et est impliqué dans l'installation, la configuration et le maintien d'un serveur virtuel privé Debian pour le projet AllSys. (https://allsys.io/)
 
 ## Contributions Git
 
@@ -11,7 +11,6 @@ Ronan Davalan (https://davalan.fr) - Photographe professionnel et développeur p
 
 ## Compétences clés
 
-- Maîtrise approfondie de Git et des workflows de gestion de version
 - Expertise en installation et maintenance de Debian, scripting Bash, gestion de Plesk, administration Apache, et développement en HTML et PHP.
 
 ## Contact
