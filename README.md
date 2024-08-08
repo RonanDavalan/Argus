@@ -64,7 +64,7 @@ Ce projet fournit des scripts pour analyser et visualiser la quantité d'adresse
 - Ajustez les horaires des tâches cron selon vos besoins.
 
 ## Sécurité
-- Les fichiers de données et les images sont créés avec des permissions restreintes (600).
+- Les fichiers sont créés, puis les droits pour l'ensemble des fichiers sont changés à 600.
 - Assurez-vous que seuls les utilisateurs autorisés ont accès aux scripts et aux données générées.
 
 ## Contribution
