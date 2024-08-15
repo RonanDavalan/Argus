@@ -1,3 +1,6 @@
 tmp
 notes.txt
 *.log
+*fail2ban_jail_local
+*log
+*utilisateur
