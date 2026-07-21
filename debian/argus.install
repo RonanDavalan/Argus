@@ -1,0 +1,4 @@
+collect-ssh.sh opt/argus/
+collect-fail2ban.sh opt/argus/
+plot.sh opt/argus/
+plot.gp opt/argus/

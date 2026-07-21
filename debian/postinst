@@ -1,0 +1,71 @@
+#!/bin/sh
+# postinst — Argus .deb distribution channel.
+set -e
+
+DEST="/opt/argus"
+DATA_DIR="/srv/argus"
+CONF_DIR="/etc/argus"
+
+case "$1" in
+    configure)
+        chown root:root "$DEST"
+        chmod 755 "$DEST"
+        # dh_fixperms leaves regular files at 644 — the collectors and the
+        # plot wrapper must be executable by root (cron) and by an operator
+        # re-rendering manually.
+        chmod 755 "$DEST"/*.sh
+
+        # root:root 755, world-readable files (644, applied by the scripts
+        # themselves at write time) — nothing sensitive is ever written here
+        # (no individual IP address, only daily counts), so there is no
+        # reason to gate reading behind a dedicated group or sudo. Retrieval
+        # by an ordinary user via scp/rsync must work without privilege.
+        mkdir -p "$DATA_DIR"
+        chown root:root "$DATA_DIR"
+        chmod 755 "$DATA_DIR"
+
+        mkdir -p "$CONF_DIR"
+        chown root:root "$CONF_DIR"
+        chmod 755 "$CONF_DIR"
+        if [ ! -f "$CONF_DIR/argus.conf" ]; then
+            cat > "$CONF_DIR/argus.conf" << 'CONF_EOF'
+# Argus configuration — every value below is the built-in default.
+# Uncomment and edit only what you need to change.
+
+# ARGUS_DATA_DIR="/srv/argus"
+# ARGUS_AUTHLOG="/var/log/auth.log"
+# ARGUS_FAIL2BAN_LOG="/var/log/fail2ban.log"
+
+# Minimum failed attempts from a single source IP, within one day, to be
+# counted as one attack. A single mistyped password is not an attack.
+# ARGUS_SSH_THRESHOLD=5
+
+# If set, collected files and charts are chown'd to this user after each
+# write — useful to have them land directly in an operator's own home
+# directory instead of staying root-owned under /srv/argus. Collection
+# itself still runs as root via cron either way (reliable regardless of
+# whether this user has read access to auth.log/fail2ban.log).
+# ARGUS_DATA_DIR="/home/nom_utilisateur/argus"
+# ARGUS_DATA_OWNER="ron"
+CONF_EOF
+            chown root:root "$CONF_DIR/argus.conf"
+            chmod 644 "$CONF_DIR/argus.conf"
+        fi
+
+        echo ""
+        echo "=========================================================="
+        echo " Argus installed."
+        echo " Nightly cron jobs are active (see /etc/cron.d/argus)."
+        echo " First chart appears after the first full night of collection."
+        echo " To back-test now, on a day that already has log history:"
+        echo "   sudo /opt/argus/collect-ssh.sh && sudo /opt/argus/plot.sh"
+        echo " Chart output: $DATA_DIR/<year>/images/"
+        echo " Retrieve without sudo: rsync -avz host:$DATA_DIR/ ./argus-backup/"
+        echo "=========================================================="
+        echo ""
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

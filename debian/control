@@ -1,0 +1,24 @@
+Source: argus
+Section: admin
+Priority: optional
+Maintainer: Ronan Davalan <ronan@davalan.fr>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: argus
+Architecture: all
+Depends: ${misc:Depends}, gawk, gnuplot-nox
+Suggests: fail2ban
+Description: SSH attack counter and historical chart, no dependency required
+ Argus counts SSH authentication attacks directly from auth.log — no
+ Fail2Ban, no CrowdSec, no monitoring stack required — and keeps an
+ unlimited-horizon daily history in plain text files, rendered as a chart.
+ .
+ If Fail2Ban is present, Argus also counts its bans per jail (reusing
+ Fail2Ban's own decisions, never re-implementing detection) as additional
+ series on the same chart. Never displays individual attacker IP addresses —
+ only their daily count.
+ .
+ Installs under /opt/argus/, data under /srv/argus/ (world-readable, no
+ sudo needed to retrieve a chart via scp/rsync), configuration under
+ /etc/argus/. Two cron jobs: nightly collection, nightly chart render.

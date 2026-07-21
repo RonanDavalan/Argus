@@ -1,0 +1,61 @@
+argus (1.0.0-3) unstable; urgency=medium
+
+  * collect-ssh.sh: journald fallback (systemd unit "ssh", overridable via
+    ARGUS_SSHD_UNIT), used automatically when auth.log is absent — Debian
+    13 minimal installs without rsyslog have no auth.log at all, only
+    journald, discovered on a real install (Davalan-vps). Both sources feed
+    the same threshold logic through a common intermediate format
+    ("<date> <heure> <ip>"); no configuration needed, no functional
+    difference in the "not every failed login is an attack" rule.
+    Validated end-to-end against real journald data (52 raw failed
+    attempts correctly extracted).
+
+ -- Ronan Davalan <ronan@davalan.fr>  Tue, 21 Jul 2026 17:30:12 +0200
+
+argus (1.0.0-2) unstable; urgency=medium
+
+  * Storage moved from /var/lib/argus (correct FHS for internal program
+    state, but requires root/sudo to retrieve anything) to /srv/argus (FHS:
+    "data served by this system") — root:root 755, world-readable files.
+    Validated by a real install on a second machine (Davalan-vps) that
+    surfaced this as a genuine retrieval problem, not a style preference.
+  * Dropped the "argus" system group entirely — it only existed to work
+    around /var/lib's restriction; nothing Argus writes is sensitive (no
+    individual IP address, ever), so nothing justifies gating reads behind
+    a group. debian/postinst and postrm simplified accordingly (no more
+    addgroup/delgroup).
+  * New optional ARGUS_DATA_OWNER setting (/etc/argus/argus.conf): when set,
+    collect-ssh.sh, collect-fail2ban.sh and plot.sh chown their output to
+    that user after writing, so charts land directly in an operator's own
+    home directory, actually owned by them — not just world-readable under
+    /srv. Collection itself keeps running as root via cron regardless
+    (reliable independently of whether that user can read auth.log/
+    fail2ban.log on a given machine).
+  * README: retrieval documented as rsync/scp run by the operator, no push
+    or notification mechanism — rsync recommended as the primary pattern
+    (builds an accumulating local mirror, consistent with the
+    unlimited-horizon argument).
+
+ -- Ronan Davalan <ronan@davalan.fr>  Tue, 21 Jul 2026 17:18:04 +0200
+
+argus (1.0.0-1) unstable; urgency=medium
+
+  * Initial public release. Standalone SSH attack counter reading auth.log
+    directly (collect-ssh.sh, threshold-based: a source IP counts as one
+    attack per day once it crosses ARGUS_SSH_THRESHOLD failed attempts,
+    default 5 — not every failed login). Optional Fail2Ban jail counter
+    (collect-fail2ban.sh), auto-detected, reuses Fail2Ban's own ban
+    decisions instead of re-implementing detection.
+  * Storage: flat text files, one per year per source, hourly-bucketed
+    ("<count> <date>Thour>") — deliberate choice to avoid database
+    corruption risk over a multi-year horizon, and to make an hour/day-of-
+    week breakdown possible later without any new collection (deferred to
+    v1.1+, see SPECIFICATIONS/V1_0_0_PUBLICATION.md in the private _CADRE).
+  * plot.sh aggregates the hourly buckets to daily totals, then renders via
+    plot.gp — adapted from the original 2024 gnuplot script (unlimited
+    historical horizon, dynamic multi-series discovery), otherwise
+    unchanged.
+  * Never stores or displays individual attacker IP addresses — daily counts
+    only, since the project's inception in 2024.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Tue, 21 Jul 2026 14:14:49 +0200

@@ -1,0 +1,10 @@
+# Debian build artefacts (dpkg-buildpackage)
+debian/.debhelper/
+debian/argus/
+debian/debhelper-build-stamp
+debian/argus.substvars
+debian/files
+debian/*.log
+../*.deb
+../*.buildinfo
+../*.changes
