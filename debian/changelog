@@ -1,3 +1,32 @@
+argus (1.0.0-4) unstable; urgency=medium
+
+  * New collect-crowdsec.sh: counts CrowdSec alerts per scenario via
+    `cscli alerts list -o json` + jq, same auto-detect/no-op-if-absent
+    pattern as collect-fail2ban.sh — both backends can run at once.
+    UNTESTED against a real CrowdSec instance (never had one available this
+    cycle); treat as best-effort until confirmed against a live install.
+  * plot.sh/plot.gp renamed chart-daily.sh/chart-daily.gp — a future
+    hour-of-day view needs its own name, "plot" doesn't scale to more than
+    one chart type.
+  * chart-daily: two regressions found by comparing against real historical
+    charts (2024/2025/2026) fixed — numeric value labels on every point
+    (were present since 2025, silently dropped in 1.0.0-1) restored; colour
+    per series now resolved by name (stable across years) instead of by
+    discovery position (was changing the same series' colour year to year).
+  * New config knobs in /etc/argus/argus.conf: ARGUS_IMG_WIDTH/HEIGHT (chart
+    size), ARGUS_LANG (fr/en, resolves the chart's own title and axis
+    labels — not just a future separate report), ARGUS_COULEUR_<name>
+    (explicit colour override per series, hyphens in jail names sanitised
+    to underscores for the variable name — a hard bash constraint, hyphens
+    are not valid in shell identifiers).
+  * Legacy 2024 scripts fully removed from the repository (not just
+    untracked) — copy preserved in the private _CADRE archive, never
+    published. scripts/preflight-publication.sh moved out of the public
+    repository entirely (maintainer-only tool, zero value to someone
+    installing Argus).
+
+ -- Ronan Davalan <ronan@davalan.fr>  Wed, 22 Jul 2026 14:13:01 +0200
+
 argus (1.0.0-3) unstable; urgency=medium
 
   * collect-ssh.sh: journald fallback (systemd unit "ssh", overridable via

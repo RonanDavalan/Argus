@@ -1,0 +1,69 @@
+#!/bin/bash
+# collect-crowdsec.sh — counts alerts decided by CrowdSec, per scenario, from
+# `cscli alerts list -o json`. Optional: a no-op, silent, successful exit if
+# CrowdSec (or jq) is absent — same modularity as collect-fail2ban.sh, both
+# can run side by side without conflict if both tools are installed.
+#
+# UNTESTED AGAINST A REAL CROWDSEC INSTANCE. Built from documented `cscli`
+# JSON output (created_at, scenario fields) — never verified hands-on,
+# unlike collect-fail2ban.sh (validated twice on real machines). Treat as
+# best-effort until confirmed against a live install; report back any field
+# mismatch.
+#
+# Argus does not re-decide what counts as an attack here: it counts what
+# CrowdSec already decided, same rationale as the Fail2Ban backend.
+#
+# Run once daily (cron), processes the previous full day. Output: one flat
+# text file per year per scenario (`ip_ban_<scenario>_<year>.txt`), one line
+# per (date, hour) bucket: "<count> <YYYY-MM-DDTHH>". Idempotent per scenario.
+set -Eeuo pipefail
+
+CONF="/etc/argus/argus.conf"
+[ -f "$CONF" ] && . "$CONF"
+
+DATA_DIR="${ARGUS_DATA_DIR:-/srv/argus}"
+
+# CrowdSec ou jq absents : sortie silencieuse, succès. Modularité du backend
+# jail — Argus fonctionne sans, collect-ssh.sh suffit.
+if ! command -v cscli >/dev/null 2>&1 || ! command -v jq >/dev/null 2>&1; then
+    exit 0
+fi
+
+YESTERDAY="$(date -d yesterday '+%Y-%m-%d')"
+YEAR="$(date -d yesterday '+%Y')"
+annee_dir="$DATA_DIR/$YEAR"
+mkdir -p "$annee_dir"
+chmod 755 "$annee_dir" 2>/dev/null || true
+if [ -n "${ARGUS_DATA_OWNER:-}" ]; then
+    chown "$ARGUS_DATA_OWNER" "$DATA_DIR" "$annee_dir" 2>/dev/null || true
+fi
+
+tmp="$(mktemp)"
+trap 'rm -f "$tmp"' EXIT
+
+# --since 2d : fenêtre large pour couvrir la journée complète de la veille
+# quelle que soit l'heure d'exécution du cron ; filtrage exact sur la date
+# fait ensuite en jq. "scenario" (ex. "crowdsecurity/ssh-bf") tronqué à sa
+# partie après "/" pour rester comparable à un nom de jail Fail2Ban.
+cscli alerts list -o json --since 2d 2>/dev/null \
+    | jq -r --arg jour "$YESTERDAY" '
+        .[]?
+        | select(.created_at != null and (.created_at | startswith($jour)))
+        | [(.scenario // "inconnu" | split("/") | last), (.created_at[0:13])]
+        | @tsv
+    ' 2>/dev/null | sort | uniq -c > "$tmp"
+# tmp : "<compte> <scenario> <date>T<heure>"
+
+[ -s "$tmp" ] || exit 0
+
+for scenario in $(awk '{print $2}' "$tmp" | sort -u); do
+    sortie="$annee_dir/ip_ban_${scenario}_${YEAR}.txt"
+    if [ -f "$sortie" ] && grep -q "^[[:space:]]*[0-9]\+ ${YESTERDAY}T" "$sortie"; then
+        continue
+    fi
+    awk -v s="$scenario" '$2 == s {print $1, $3}' "$tmp" >> "$sortie"
+    chmod 644 "$sortie" 2>/dev/null || true
+    if [ -n "${ARGUS_DATA_OWNER:-}" ]; then
+        chown "$ARGUS_DATA_OWNER" "$sortie" 2>/dev/null || true
+    fi
+done

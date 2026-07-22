@@ -5,6 +5,6 @@ debian/debhelper-build-stamp
 debian/argus.substvars
 debian/files
 debian/*.log
-../*.deb
-../*.buildinfo
-../*.changes
+../Paquets/*.deb
+../Paquets/*.buildinfo
+../Paquets/*.changes
