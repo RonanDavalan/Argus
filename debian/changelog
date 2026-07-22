@@ -1,3 +1,15 @@
+argus (1.0.0-5) unstable; urgency=medium
+
+  * collect-crowdsec.sh: fixed against a real CrowdSec instance
+    (Davalan-vps, v1.7.8, fail2ban disabled, real ssh-bf/ssh-slow-bf
+    alerts against a genuine attacker in production). "scenario" is not a
+    top-level field on an alert as first assumed — it lives under
+    decisions[], and one alert can carry more than one decision, each
+    counted separately at the alert's own timestamp. No longer a caveat:
+    validated against live data, not just documented behaviour.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Wed, 22 Jul 2026 16:54:44 +0200
+
 argus (1.0.0-4) unstable; urgency=medium
 
   * New collect-crowdsec.sh: counts CrowdSec alerts per scenario via

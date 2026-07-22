@@ -4,11 +4,11 @@
 # CrowdSec (or jq) is absent — same modularity as collect-fail2ban.sh, both
 # can run side by side without conflict if both tools are installed.
 #
-# UNTESTED AGAINST A REAL CROWDSEC INSTANCE. Built from documented `cscli`
-# JSON output (created_at, scenario fields) — never verified hands-on,
-# unlike collect-fail2ban.sh (validated twice on real machines). Treat as
-# best-effort until confirmed against a live install; report back any field
-# mismatch.
+# Validated 22/07/2026 against a real CrowdSec instance (Davalan-vps,
+# v1.7.8, real ssh-bf/ssh-slow-bf alerts). First version of this script
+# assumed "scenario" was a top-level field on each alert — wrong: it lives
+# under decisions[], one alert can carry more than one decision. Fixed and
+# re-verified against real JSON before this line was written.
 #
 # Argus does not re-decide what counts as an attack here: it counts what
 # CrowdSec already decided, same rationale as the Fail2Ban backend.
@@ -43,13 +43,19 @@ trap 'rm -f "$tmp"' EXIT
 
 # --since 2d : fenêtre large pour couvrir la journée complète de la veille
 # quelle que soit l'heure d'exécution du cron ; filtrage exact sur la date
-# fait ensuite en jq. "scenario" (ex. "crowdsecurity/ssh-bf") tronqué à sa
-# partie après "/" pour rester comparable à un nom de jail Fail2Ban.
+# fait ensuite en jq. Le scénario (ex. "crowdsecurity/ssh-bf") vit sous
+# decisions[], pas au premier niveau de l'alerte — une alerte peut porter
+# plusieurs décisions, chacune comptée séparément, à l'heure de l'alerte qui
+# les porte (les décisions elles-mêmes n'ont pas d'horodatage propre, juste
+# une durée). Tronqué à sa partie après "/" pour rester comparable à un nom
+# de jail Fail2Ban.
 cscli alerts list -o json --since 2d 2>/dev/null \
     | jq -r --arg jour "$YESTERDAY" '
         .[]?
         | select(.created_at != null and (.created_at | startswith($jour)))
-        | [(.scenario // "inconnu" | split("/") | last), (.created_at[0:13])]
+        | .created_at as $when
+        | .decisions[]?
+        | [(.scenario // "inconnu" | split("/") | last), ($when[0:13])]
         | @tsv
     ' 2>/dev/null | sort | uniq -c > "$tmp"
 # tmp : "<compte> <scenario> <date>T<heure>"
