@@ -66,6 +66,7 @@ trap 'rm -f "$fragment"' EXIT
     plot_parts=()
     label_parts=()
     couleurs_prises=()
+    json_series_parts=()
     for f in "$daily_dir"/*.txt; do
         [ -s "$f" ] || continue
         idx=$((idx + 1))
@@ -102,6 +103,11 @@ trap 'rm -f "$fragment"' EXIT
         echo "set style line $idx lc rgb \"$couleur\" lw 2"
         plot_parts+=("'$f' using 2:1 with linespoints ls $idx title '$titre_serie'")
         label_parts+=("'$f' using 2:1:1 with labels left offset char 0,1 textcolor rgb \"white\" font \",14\" notitle")
+        # Objet JSON de la série (contrat d'export, indépendant du PNG) —
+        # même nom_sans_annee et même couleur que le rendu gnuplot, une
+        # seule résolution de couleur pour les deux consommateurs.
+        json_quotidien="$(awk '{printf "%s\"%s\":%s", (NR>1?",":""), $2, $1}' "$f")"
+        json_series_parts+=("\"$nom_sans_annee\":{\"couleur\":\"$couleur\",\"quotidien\":{$json_quotidien}}")
     done
     if [ "$idx" -eq 0 ]; then
         echo "set label \"No data\" at graph 0.5,0.5 center textcolor rgb \"white\" font \",20\""
@@ -113,6 +119,22 @@ trap 'rm -f "$fragment"' EXIT
     fi
 } > "$fragment"
 
+# ── Contrat d'export JSON — régénéré intégralement à chaque rotation,
+#    jamais modifié en place. Les fichiers plats de $daily_dir restent la
+#    source de vérité interne ; ce JSON est un artefact jetable et
+#    reconstructible depuis eux, au même titre que le PNG. Un futur
+#    consommateur (visualiseur, Sillage) lit ce fichier, jamais le format
+#    interne shell/gawk des fichiers plats.
+json_file="$images_dir/${YEAR}_argus.json"
+{
+    printf '{"version":1,"annee":%s,"genere_le":"%s","series":{' \
+        "$YEAR" "$(date --iso-8601=seconds)"
+    IFS=,
+    printf '%s' "${json_series_parts[*]-}"
+    unset IFS
+    printf '}}\n'
+} > "$json_file"
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ARGUS_IMAGES_DIR="$images_dir" \
 ARGUS_IMG_WIDTH="$IMG_WIDTH" ARGUS_IMG_HEIGHT="$IMG_HEIGHT" \
@@ -120,7 +142,7 @@ ARGUS_TITRE="$TITRE" ARGUS_XLABEL="$XLABEL" ARGUS_YLABEL="$YLABEL" \
 ARGUS_FRAGMENT="$fragment" \
     gnuplot "$SCRIPT_DIR/chart-daily.gp"
 
-chmod 644 "$images_dir"/*.png 2>/dev/null || true
+chmod 644 "$images_dir"/*.png "$json_file" 2>/dev/null || true
 if [ -n "${ARGUS_DATA_OWNER:-}" ]; then
-    chown "$ARGUS_DATA_OWNER" "$images_dir"/*.png 2>/dev/null || true
+    chown "$ARGUS_DATA_OWNER" "$images_dir"/*.png "$json_file" 2>/dev/null || true
 fi

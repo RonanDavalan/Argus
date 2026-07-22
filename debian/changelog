@@ -1,3 +1,16 @@
+argus (1.0.0-7) unstable; urgency=medium
+
+  * chart-daily.sh: new JSON export contract, alongside the PNG.
+    <annee>_argus.json in the same images/ directory, regenerated whole on
+    every run (never patched in place) from the same per-day aggregates
+    used for the chart, one object per series with its resolved colour and
+    day/count map. The flat per-hour files remain the internal source of
+    truth; this JSON is a disposable, rebuildable export for an external
+    consumer, exactly like the PNG already is. No new dependency (built
+    with awk/printf, no jq). Valid JSON produced even with zero series.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Thu, 23 Jul 2026 01:10:00 +0200
+
 argus (1.0.0-6) unstable; urgency=medium
 
   * chart-daily.sh: colour collision fix. The name hash (cksum mod 14)
