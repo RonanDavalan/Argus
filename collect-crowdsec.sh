@@ -60,6 +60,22 @@ cscli alerts list -o json --since 2d 2>/dev/null \
     ' 2>/dev/null | sort | uniq -c > "$tmp"
 # tmp : "<compte> <scenario> <date>T<heure>"
 
+# ── Battement de vie — voir collect-ssh.sh pour le raisonnement complet.
+#    Placé avant la sortie anticipée ci-dessous : c'est justement le jour à
+#    zéro alerte que ce fichier doit enregistrer, pas seulement les jours actifs.
+heartbeat_dir="$annee_dir/.heartbeat"
+heartbeat_file="$heartbeat_dir/crowdsec.txt"
+mkdir -p "$heartbeat_dir"
+if ! { [ -f "$heartbeat_file" ] && grep -q "^${YESTERDAY} " "$heartbeat_file"; }; then
+    evenements=0
+    [ -s "$tmp" ] && evenements=$(awk '{s+=$1} END{print s+0}' "$tmp")
+    echo "$YESTERDAY $evenements" >> "$heartbeat_file"
+    chmod 644 "$heartbeat_file" 2>/dev/null || true
+    if [ -n "${ARGUS_DATA_OWNER:-}" ]; then
+        chown "$ARGUS_DATA_OWNER" "$heartbeat_dir" "$heartbeat_file" 2>/dev/null || true
+    fi
+fi
+
 [ -s "$tmp" ] || exit 0
 
 for scenario in $(awk '{print $2}' "$tmp" | sort -u); do

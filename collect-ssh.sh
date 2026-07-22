@@ -132,3 +132,22 @@ if [ -s "$tmp" ]; then
         chown "$ARGUS_DATA_OWNER" "$sortie" 2>/dev/null || true
     fi
 fi
+
+# ── Battement de vie — distinct des fichiers de données ci-dessus, qui ne
+#    contiennent jamais de ligne pour un jour sans attaque qualifiante. Sans
+#    ce fichier séparé, une vraie journée calme et une collecte cassée sont
+#    indiscernables l'une de l'autre. Une ligne par jour, y compris à zéro ;
+#    idempotence propre à ce fichier (pas celle de $sortie, qui ne voit
+#    jamais un jour à zéro).
+heartbeat_dir="$annee_dir/.heartbeat"
+heartbeat_file="$heartbeat_dir/ssh.txt"
+mkdir -p "$heartbeat_dir"
+if ! { [ -f "$heartbeat_file" ] && grep -q "^${YESTERDAY} " "$heartbeat_file"; }; then
+    evenements=0
+    [ -s "$tmp" ] && evenements=$(awk '{s+=$1} END{print s+0}' "$tmp")
+    echo "$YESTERDAY $evenements" >> "$heartbeat_file"
+    chmod 644 "$heartbeat_file" 2>/dev/null || true
+    if [ -n "${ARGUS_DATA_OWNER:-}" ]; then
+        chown "$ARGUS_DATA_OWNER" "$heartbeat_dir" "$heartbeat_file" 2>/dev/null || true
+    fi
+fi

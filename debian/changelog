@@ -1,3 +1,23 @@
+argus (1.0.0-8) unstable; urgency=medium
+
+  * New argus-doctor.sh: reads the heartbeat files added to the three
+    collectors (.heartbeat/<backend>.txt, one line per day including
+    zero-event days) to tell a genuinely quiet day apart from a silently
+    broken collector — the per-series data files never record a zero-event
+    day, so they could not answer that question on their own. Also checks
+    each source's availability right now (auth.log/journald, fail2ban-
+    client, cscli). Installed and cron'd at 00:20, five minutes after
+    chart-daily.sh. Does not check ARGUS_SSH_THRESHOLD against fail2ban's
+    real findtime/maxretry — open question, deliberately left out
+    (RAISON_ETRE.md).
+  * collect-ssh.sh, collect-fail2ban.sh, collect-crowdsec.sh: each now
+    appends one line per day to its own heartbeat file, including on a
+    zero-event day, self-idempotent independently of the existing
+    data-file idempotency check. No change to the existing data file
+    formats or to chart-daily.sh's consumption of them.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Thu, 23 Jul 2026 01:40:00 +0200
+
 argus (1.0.0-7) unstable; urgency=medium
 
   * chart-daily.sh: new JSON export contract, alongside the PNG.

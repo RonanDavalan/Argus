@@ -3,3 +3,4 @@ collect-fail2ban.sh opt/argus/
 collect-crowdsec.sh opt/argus/
 chart-daily.sh opt/argus/
 chart-daily.gp opt/argus/
+argus-doctor.sh opt/argus/
