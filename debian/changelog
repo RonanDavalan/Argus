@@ -1,3 +1,18 @@
+argus (1.0.0-6) unstable; urgency=medium
+
+  * chart-daily.sh: colour collision fix. The name hash (cksum mod 14)
+    could assign the same colour to several series present in the same
+    render — confirmed on 20 real jail names from a live Plesk box, up to
+    four series sharing one colour. Series without an explicit
+    ARGUS_COULEUR_* now get a deterministic circular shift to the next
+    free palette colour when their hashed colour is already taken by
+    another series in the same run. No effect when there is no collision
+    (verified: identical output to the previous hash on a 3-series case).
+    Beyond 14 co-present series the 14-colour palette is exhausted and a
+    repeat becomes unavoidable — intrinsic limit, not a bug.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Thu, 23 Jul 2026 00:00:00 +0200
+
 argus (1.0.0-5) unstable; urgency=medium
 
   * collect-crowdsec.sh: fixed against a real CrowdSec instance

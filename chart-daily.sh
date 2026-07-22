@@ -65,6 +65,7 @@ trap 'rm -f "$fragment"' EXIT
     idx=0
     plot_parts=()
     label_parts=()
+    couleurs_prises=()
     for f in "$daily_dir"/*.txt; do
         [ -s "$f" ] || continue
         idx=$((idx + 1))
@@ -78,8 +79,25 @@ trap 'rm -f "$fragment"' EXIT
         couleur="${!var_couleur:-}"
         if [ -z "$couleur" ]; then
             hash="$(echo -n "$nom_sans_annee" | cksum | cut -d' ' -f1)"
-            couleur="${PALETTE[$((hash % ${#PALETTE[@]}))]}"
+            base=$((hash % ${#PALETTE[@]}))
+            couleur="${PALETTE[$base]}"
+            # Collision confirmée sur données réelles (vingt jails Plesk
+            # réels, deux groupes de quatre séries sur la même couleur au
+            # hash brut) — décalage déterministe par ordre alphabétique
+            # (ordre de ce parcours, fixé par le glob *.txt) : la première
+            # série sur une couleur la garde, la suivante prend la première
+            # couleur encore libre de la palette. Sonde circulaire ;
+            # au-delà de 14 séries effectivement co-présentes dans un même
+            # rendu, la répétition redevient inévitable — limite
+            # intrinsèque de la taille de la palette, pas un bug.
+            pas=0
+            while [ "$pas" -lt "${#PALETTE[@]}" ] \
+                  && printf '%s\n' "${couleurs_prises[@]-}" | grep -qx "$couleur"; do
+                pas=$((pas + 1))
+                couleur="${PALETTE[$(((base + pas) % ${#PALETTE[@]}))]}"
+            done
         fi
+        couleurs_prises+=("$couleur")
         titre_serie="$(echo "$nom_serie" | tr '_' ' ')"
         echo "set style line $idx lc rgb \"$couleur\" lw 2"
         plot_parts+=("'$f' using 2:1 with linespoints ls $idx title '$titre_serie'")
