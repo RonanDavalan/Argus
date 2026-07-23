@@ -61,7 +61,17 @@ trap 'rm -f "$tmp"' EXIT
             *)    cat "$f" ;;
         esac
     done
-    [ -e "$F2BLOG.1" ] && cat "$F2BLOG.1"
+    # Rotation non compressée (logrotate à compression différée d'un cycle) —
+    # cas optionnel. Un `if` structuré, pas `[ ... ] && cat ...` : ce dernier,
+    # quand le fichier est absent (rotation à compression immédiate, cas réel
+    # rencontré en déploiement), fait échouer sa propre expression — et comme c'est
+    # la dernière commande du groupe qui alimente le pipeline, `pipefail` +
+    # `set -e` transforment une absence normale en arrêt brutal du script,
+    # avant même l'écriture du battement de vie. Trouvé en testant contre une
+    # vraie machine, pas en relisant le code.
+    if [ -e "$F2BLOG.1" ]; then
+        cat "$F2BLOG.1"
+    fi
 } | extraire | sort | uniq -c > "$tmp"
 # tmp : "<compte> <jail> <date>T<heure>"
 

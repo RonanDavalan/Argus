@@ -1,3 +1,20 @@
+argus (1.0.0-9) unstable; urgency=medium
+
+  * collect-fail2ban.sh: fixed a real crash found on first real-world
+    deployment. The trailing `[ -e "$F2BLOG.1" ] && cat "$F2BLOG.1"`
+    (uncompressed rotation, one cycle before gzip) is the last command of
+    the group feeding the pipeline; when that file is absent — the normal
+    case on a host whose logrotate compresses immediately, no plain ".1"
+    ever exists — the test itself returns non-zero, and with pipefail +
+    set -e that alone aborted the whole script, even though the actual
+    collection just before had fully succeeded and produced correct data.
+    Replaced with a structured `if`, which does not carry a failing exit
+    status when the file is simply absent. Verified against both cases: no
+    plain ".1" (the deployment target's real layout) and a plain ".1"
+    present (the case the line was written for).
+
+ -- Ronan Davalan <ronan@davalan.fr>  Thu, 23 Jul 2026 02:35:00 +0200
+
 argus (1.0.0-8) unstable; urgency=medium
 
   * New argus-doctor.sh: reads the heartbeat files added to the three
