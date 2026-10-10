@@ -88,8 +88,8 @@ ARGUS_SSHD_UNIT="ssh"                        # systemd unit name, for the journa
 # each write, so they land in that operator's own home directory instead of
 # staying root-owned under /srv/argus. Collection itself always runs as root
 # via cron either way.
-# ARGUS_DATA_DIR="/home/nom_utilisateur/argus"
-# ARGUS_DATA_OWNER="ron"
+# ARGUS_DATA_DIR="/home/alice/argus"
+# ARGUS_DATA_OWNER="alice"
 
 # Chart appearance.
 # ARGUS_IMG_WIDTH=3840
@@ -165,6 +165,18 @@ storage).
 sudo apt remove argus   # keeps /srv/argus and /etc/argus
 sudo apt purge argus    # also removes them
 ```
+
+---
+
+## Credits
+
+Argus is the result of a human-LLM collaboration, with the roles written down as
+they were actually played. The full list is in [CONTRIBUTORS.md](CONTRIBUTORS.md).
+
+*   **Ronan Davalan** — Architect and arbiter: original scripts (2024), decisions, validation and testing.
+*   **Claude Code (Anthropic)** — Lead developer: collectors, chart rendering, `argus-doctor.sh`, Debian package, documentation.
+*   **Gemini (Google)** — Synthesizer and strategic co-writer: planning and framing of the project's purpose.
+*   **DeepSeek** — Field companion: CrowdSec setup on a real server used to validate `collect-crowdsec.sh`.
 
 ---
 
