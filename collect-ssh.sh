@@ -1,19 +1,19 @@
 #!/bin/bash
-# collect-ssh.sh — counts SSH attacks directly from system logs, no
-# dependency on fail2ban, CrowdSec, or any other intrusion-prevention tool.
-# Two sources, tried in order: auth.log (rsyslog systems), journald
-# fallback (systems without rsyslog — increasingly the Debian default).
-# Whichever is present is used transparently; no configuration needed.
+# collect-ssh.sh — compte les attaques SSH directement depuis les journaux
+# système, sans dépendre de fail2ban, de CrowdSec ni d'aucun autre outil de
+# prévention d'intrusion. Deux sources, essayées dans l'ordre : auth.log
+# (systèmes avec rsyslog), puis journald (systèmes sans rsyslog, de plus en
+# plus fréquents sur Debian). Celle qui existe est utilisée sans configuration.
 #
-# An "attack" is a source IP that reached ARGUS_SSH_THRESHOLD failed
-# authentication attempts within a single day — a single mistyped password
-# from a legitimate user is not counted. This mirrors what an IPS jail would
-# decide, without requiring one to be installed.
+# Une « attaque » est une IP source qui atteint ARGUS_SSH_THRESHOLD
+# tentatives d'authentification échouées dans une même journée : un seul mot
+# de passe mal saisi par un utilisateur légitime n'est pas compté. C'est ce
+# que déciderait une jail d'un IPS, sans en exiger un.
 #
-# Run once daily (cron), processes the previous full day. Output: one flat
-# text file per year, one line per (date, hour) bucket that saw at least one
-# qualifying attack: "<count> <YYYY-MM-DDTHH>". Idempotent — running twice on
-# the same day does not duplicate the entry.
+# Lancé une fois par jour (cron), traite la veille entière. Sortie : un
+# fichier texte plat par année, une ligne par tranche (date, heure) qui a vu
+# au moins une attaque qualifiante : « <compte> <AAAA-MM-JJTHH> ». Idempotent :
+# deux lancements le même jour ne dupliquent pas l'entrée.
 set -Eeuo pipefail
 
 # auth.log utilise les abréviations de mois anglaises quelle que soit la

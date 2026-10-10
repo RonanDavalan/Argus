@@ -1,16 +1,18 @@
 #!/bin/bash
-# collect-fail2ban.sh — counts bans decided by Fail2Ban, per jail, from
-# fail2ban.log. Optional: a no-op, silent, successful exit if Fail2Ban is not
-# installed — this script never causes collect-ssh.sh's cron entry to fail.
+# collect-fail2ban.sh — compte les bannissements décidés par Fail2Ban, par
+# jail, depuis fail2ban.log. Optionnel : sortie silencieuse et réussie si
+# Fail2Ban n'est pas installé, sans jamais faire échouer l'entrée cron de
+# collect-ssh.sh.
 #
-# Argus does not re-decide what counts as an attack here: it counts what
-# Fail2Ban already decided ("Ban" lines), excluding "Restore Ban" (bans
-# restored at service start, not new attacks). Same rationale as the
-# standalone project since 2024.
+# Argus ne redécide pas ici ce qui est une attaque : il compte ce que Fail2Ban
+# a déjà décidé (lignes « Ban »), hors « Restore Ban » (bannissements
+# restaurés au démarrage du service, pas de nouvelles attaques). Même raison
+# d'être que le projet autonome depuis 2024.
 #
-# Run once daily (cron), processes the previous full day. Output: one flat
-# text file per year per jail (`ip_ban_<jail>_<year>.txt`), one line per
-# (date, hour) bucket: "<count> <YYYY-MM-DDTHH>". Idempotent per jail.
+# Lancé une fois par jour (cron), traite la veille entière. Sortie : un
+# fichier texte plat par année et par jail (`ip_ban_<jail>_<année>.txt`), une
+# ligne par tranche (date, heure) : « <compte> <AAAA-MM-JJTHH> ». Idempotent
+# par jail.
 set -Eeuo pipefail
 
 CONF="/etc/argus/argus.conf"

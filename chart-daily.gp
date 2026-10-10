@@ -1,10 +1,10 @@
-# chart-daily.gp — renders the daily attack-count history as a 4K PNG
-# (size configurable). Static template: terminal, labels (i18n via
-# ARGUS_TITRE/XLABEL/YLABEL) and output path come from environment
-# variables set by chart-daily.sh, which also generates and hands over
-# the dynamic part (line styles + plot command, one per real series found
-# this year, colour resolved by name — not by discovery position, so a
-# given series keeps the same colour year after year).
+# chart-daily.gp — trace l'historique quotidien du nombre d'attaques en PNG
+# 4K (taille configurable). Gabarit statique : le terminal, les libellés
+# (ARGUS_TITRE/XLABEL/YLABEL, traduits) et le chemin de sortie viennent de
+# variables d'environnement posées par chart-daily.sh, qui génère aussi la
+# partie dynamique (styles de ligne et commande plot, une par série réelle
+# trouvée cette année, couleur résolue par nom et non par ordre de découverte :
+# une série garde la même couleur d'une année sur l'autre).
 
 images_dir = system("echo -n \"$ARGUS_IMAGES_DIR\"")
 largeur = system("echo -n \"$ARGUS_IMG_WIDTH\"") + 0

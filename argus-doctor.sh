@@ -1,25 +1,27 @@
 #!/bin/bash
-# argus-doctor.sh — health check for the Argus collection pipeline.
+# argus-doctor.sh — contrôle de santé de la chaîne de collecte d'Argus.
 #
-# Reads the heartbeat files the collectors write daily (.heartbeat/*.txt,
-# added alongside them) to tell a genuinely quiet day apart from a silently
-# broken collector. The per-series data files (ssh_direct_*.txt,
-# ip_ban_*.txt) never record a zero-event day by design — they cannot
-# answer that question on their own, this script exists because of that.
+# Lit les fichiers de battement de vie que les collecteurs écrivent chaque
+# jour (.heartbeat/*.txt) pour distinguer une journée réellement calme d'un
+# collecteur en panne silencieuse. Les fichiers de données par série
+# (ssh_direct_*.txt, ip_ban_*.txt) n'enregistrent jamais un jour sans
+# événement, par construction : ils ne peuvent pas répondre seuls à cette
+# question, et ce script existe pour cela.
 #
-# Also checks each source's availability right now (auth.log/journald,
-# fail2ban-client, cscli) — a source can be reachable today while
-# yesterday's collection still failed for another reason, and vice versa,
-# so the two checks are kept separate rather than inferring one from the other.
+# Vérifie aussi la disponibilité de chaque source à l'instant présent
+# (auth.log/journald, fail2ban-client, cscli) : une source peut être
+# accessible aujourd'hui alors que la collecte d'hier a échoué pour une autre
+# raison, et inversement ; les deux contrôles restent séparés au lieu de
+# déduire l'un de l'autre.
 #
-# Does NOT check ARGUS_SSH_THRESHOLD coherence against fail2ban's real
-# findtime/maxretry — open question, not resolved yet
-# (SPECIFICATIONS/RAISON_ETRE.md, piste "argus-doctor"). Left out on
-# purpose rather than guessed.
+# Ne vérifie PAS la cohérence de ARGUS_SSH_THRESHOLD avec le findtime et le
+# maxretry réels de fail2ban : la question reste ouverte
+# (SPECIFICATIONS/RAISON_ETRE.md, piste « argus-doctor »), écartée plutôt que
+# devinée.
 #
-# Run manually or via cron, any time after the collectors (00:05) — reads
-# state, writes nothing. Exit 0: nothing to report. Exit 1: at least one
-# concern, listed under "À VÉRIFIER" / "TO CHECK".
+# À lancer à la main ou par cron, après les collecteurs (00:05) : lit l'état,
+# n'écrit rien. Code 0 : rien à signaler. Code 1 : au moins une anomalie,
+# listée sous « À VÉRIFIER » / « TO CHECK ».
 set -Eeuo pipefail
 
 CONF="/etc/argus/argus.conf"

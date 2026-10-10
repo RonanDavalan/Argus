@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst — Argus .deb distribution channel.
+# postinst — canal de distribution .deb d'Argus.
 set -e
 
 DEST="/opt/argus"
@@ -10,16 +10,17 @@ case "$1" in
     configure)
         chown root:root "$DEST"
         chmod 755 "$DEST"
-        # dh_fixperms leaves regular files at 644 — the collectors and the
-        # plot wrapper must be executable by root (cron) and by an operator
-        # re-rendering manually.
+        # dh_fixperms laisse les fichiers ordinaires à 644 : les collecteurs et
+        # le script de tracé doivent être exécutables par root (cron) et par un
+        # opérateur qui relance le rendu à la main.
         chmod 755 "$DEST"/*.sh
 
-        # root:root 755, world-readable files (644, applied by the scripts
-        # themselves at write time) — nothing sensitive is ever written here
-        # (no individual IP address, only daily counts), so there is no
-        # reason to gate reading behind a dedicated group or sudo. Retrieval
-        # by an ordinary user via scp/rsync must work without privilege.
+        # root:root 755, fichiers lisibles de tous (644, posés par les scripts
+        # eux-mêmes à l'écriture) : rien de sensible n'est écrit ici (aucune
+        # adresse IP individuelle, seulement des totaux quotidiens), donc
+        # aucune raison de réserver la lecture à un groupe dédié ou à sudo. La
+        # récupération par un utilisateur ordinaire via scp/rsync doit marcher
+        # sans privilège.
         mkdir -p "$DATA_DIR"
         chown root:root "$DATA_DIR"
         chmod 755 "$DATA_DIR"
@@ -47,8 +48,8 @@ case "$1" in
 # directory instead of staying root-owned under /srv/argus. Collection
 # itself still runs as root via cron either way (reliable regardless of
 # whether this user has read access to auth.log/fail2ban.log/CrowdSec).
-# ARGUS_DATA_DIR="/home/nom_utilisateur/argus"
-# ARGUS_DATA_OWNER="ron"
+# ARGUS_DATA_DIR="/home/alice/argus"
+# ARGUS_DATA_OWNER="alice"
 
 # Chart appearance (chart-daily.sh/.gp).
 # ARGUS_IMG_WIDTH=3840

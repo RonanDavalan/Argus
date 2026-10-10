@@ -1,13 +1,15 @@
 #!/bin/sh
-# postrm — Argus .deb distribution channel.
-# remove : code only. /srv/argus (collected history) and /etc/argus (config)
-#          preserved — clean reinstall possible without losing history.
-# purge  : also removes /srv/argus and /etc/argus.
+# postrm — canal de distribution .deb d'Argus.
+# remove : le code seul. /srv/argus (historique collecté) et /etc/argus
+#          (configuration) sont conservés : une réinstallation propre est
+#          possible sans perdre l'historique.
+# purge  : supprime aussi /srv/argus et /etc/argus.
 #
-# No system group to manage here (v1.0.0 dropped it — see
-# SPECIFICATIONS/V1_0_0_PUBLICATION.md in the private _CADRE): /srv/argus is
-# root:root 755 with world-readable files by design, nothing it contains is
-# sensitive (no individual IP address, only daily counts).
+# Aucun groupe système à gérer ici (abandonné en v1.0.0, voir
+# SPECIFICATIONS/V1_0_0_PUBLICATION.md du _CADRE privé) : /srv/argus est
+# root:root 755 avec des fichiers lisibles de tous, par choix, car rien de ce
+# qu'il contient n'est sensible (aucune adresse IP individuelle, seulement des
+# totaux quotidiens).
 set -e
 
 case "$1" in

@@ -1,21 +1,21 @@
 #!/bin/bash
-# collect-crowdsec.sh — counts alerts decided by CrowdSec, per scenario, from
-# `cscli alerts list -o json`. Optional: a no-op, silent, successful exit if
-# CrowdSec (or jq) is absent — same modularity as collect-fail2ban.sh, both
-# can run side by side without conflict if both tools are installed.
+# collect-crowdsec.sh — compte les alertes décidées par CrowdSec, par scénario,
+# depuis `cscli alerts list -o json`. Optionnel : sortie silencieuse et
+# réussie si CrowdSec (ou jq) est absent, comme collect-fail2ban.sh ; les
+# deux peuvent tourner côte à côte sans conflit si les deux outils sont
+# installés.
 #
-# Validated 22/07/2026 against a real CrowdSec instance (Davalan-vps,
-# v1.7.8, real ssh-bf/ssh-slow-bf alerts). First version of this script
-# assumed "scenario" was a top-level field on each alert — wrong: it lives
-# under decisions[], one alert can carry more than one decision. Fixed and
-# re-verified against real JSON before this line was written.
+# Validé contre une instance CrowdSec réelle (v1.7.8, alertes ssh-bf et
+# ssh-slow-bf réelles). Le champ « scenario » n'est pas au premier niveau de
+# l'alerte mais sous decisions[] : une alerte peut porter plusieurs décisions.
 #
-# Argus does not re-decide what counts as an attack here: it counts what
-# CrowdSec already decided, same rationale as the Fail2Ban backend.
+# Argus ne redécide pas ici ce qui est une attaque : il compte ce que
+# CrowdSec a déjà décidé, comme pour Fail2Ban.
 #
-# Run once daily (cron), processes the previous full day. Output: one flat
-# text file per year per scenario (`ip_ban_<scenario>_<year>.txt`), one line
-# per (date, hour) bucket: "<count> <YYYY-MM-DDTHH>". Idempotent per scenario.
+# Lancé une fois par jour (cron), traite la veille entière. Sortie : un
+# fichier texte plat par année et par scénario (`ip_ban_<scénario>_<année>.txt`),
+# une ligne par tranche (date, heure) : « <compte> <AAAA-MM-JJTHH> ».
+# Idempotent par scénario.
 set -Eeuo pipefail
 
 CONF="/etc/argus/argus.conf"

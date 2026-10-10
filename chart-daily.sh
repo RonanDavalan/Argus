@@ -1,11 +1,11 @@
 #!/bin/bash
-# chart-daily.sh — aggregates the hourly-bucketed files produced by the
-# collectors into daily totals, resolves a stable colour and label per
-# series, then calls chart-daily.gp to render the historical chart.
+# chart-daily.sh — agrège en totaux quotidiens les fichiers par tranche
+# horaire produits par les collecteurs, résout une couleur et un libellé
+# stables par série, puis appelle chart-daily.gp pour tracer l'historique.
 #
-# A future chart-hourly.sh/.gp will reuse the same hourly source files for
-# an hour-of-day view — this script and its .gp are named "daily" on
-# purpose, not "plot", because there will be more than one view.
+# Un futur chart-hourly.sh/.gp réutilisera les mêmes fichiers horaires pour
+# une vue par heure du jour : ce script et son .gp s'appellent « daily » et
+# non « plot » parce qu'il y aura plus d'une vue.
 set -Eeuo pipefail
 
 CONF="/etc/argus/argus.conf"
