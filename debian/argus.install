@@ -5,3 +5,4 @@ chart-daily.sh opt/argus/
 chart-daily.gp opt/argus/
 argus-doctor.sh opt/argus/
 logo/argus.svg usr/share/icons/hicolor/scalable/apps/
+logo/argus-48.png usr/share/icons/hicolor/48x48/apps/
