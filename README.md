@@ -176,6 +176,7 @@ they were actually played. The full list is in [CONTRIBUTORS.md](CONTRIBUTORS.md
 *   **Ronan Davalan** — Architect and arbiter: original scripts (2024), decisions, validation and testing.
 *   **Claude Code (Anthropic)** — Lead developer: collectors, chart rendering, `argus-doctor.sh`, Debian package, documentation.
 *   **Gemini (Google)** — Synthesizer and strategic co-writer: planning and framing of the project's purpose.
+*   **minimax-m3.1-flash-free (MiniMax)** — Graphiste: the project's visual identity (mark, logotype, favicon, 3D emblem).
 *   **DeepSeek** — Field companion: CrowdSec setup on a real server used to validate `collect-crowdsec.sh`.
 
 ---

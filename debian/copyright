@@ -1,6 +1,11 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: argus
 
+Files: logo/*
+Copyright: 2026 Ronan Davalan
+ 2026 minimax-m3.1-flash-free
+License: MIT
+
 Files: *
 Copyright: 2024-2026 Ronan Davalan
 License: MIT

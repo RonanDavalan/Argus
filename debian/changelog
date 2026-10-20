@@ -1,3 +1,13 @@
+argus (1.0.0-10) unstable; urgency=low
+
+  * The package now carries the project's icon: logo/argus.svg is installed
+    as /usr/share/icons/hicolor/scalable/apps/argus.svg. The mark was drawn
+    for this project (see ../logo/ for the full set of variants) and the
+    licence of the package, MIT, covers it. No functional change: the scripts
+    and the cron task are untouched.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Tue, 20 Oct 2026 11:45:00 +0200
+
 argus (1.0.0-9) unstable; urgency=medium
 
   * collect-fail2ban.sh: fixed a real crash found on first real-world
