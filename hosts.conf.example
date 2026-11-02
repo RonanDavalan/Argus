@@ -1,0 +1,7 @@
+# hosts.conf — machines handled by argus-fetch.
+# Copy this file to ~/.config/argus/hosts.conf and adapt it:
+#   <ssh_alias>,<remote_path>
+# <ssh_alias> is a Host name of ~/.ssh/config (or user@host), <remote_path> the
+# Argus data directory of that machine (ARGUS_DATA_DIR in /etc/argus/argus.conf).
+serveur.exemple.org,/srv/argus/
+sauvegarde.exemple.org,/srv/argus/

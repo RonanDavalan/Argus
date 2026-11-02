@@ -49,6 +49,14 @@ argus_libelle() {
         de:aucune) echo "Keine Daten" ;;
         es:aucune) echo "Sin datos" ;;
         *:aucune)  echo "No data" ;;
+        fr:titre_horaire) echo "Nombre d'attaques par heure du jour (heure locale du serveur)" ;;
+        de:titre_horaire) echo "Angriffe pro Tageszeit (lokale Serverzeit)" ;;
+        es:titre_horaire) echo "Ataques por hora del día (hora local del servidor)" ;;
+        *:titre_horaire)  echo "Attacks per hour of the day (local server time)" ;;
+        fr:exclue) echo "série exclue : pas de données horaires" ;;
+        de:exclue) echo "ausgeschlossene Serie: keine Stundendaten" ;;
+        es:exclue) echo "serie excluida: sin datos horarios" ;;
+        *:exclue)  echo "excluded series: no hourly data" ;;
     esac
 }
 

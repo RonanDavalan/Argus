@@ -1,0 +1,114 @@
+#!/bin/bash
+# argus-fetch — rapatrie sur le poste de bureau les graphiques produits par
+# Argus sur les serveurs listés dans hosts.conf : une connexion par machine,
+# jamais de nouvel essai, jamais d'écrasement d'un fichier déjà rapatrié.
+set -Eeuo pipefail
+
+usage() {
+    cat <<'HELP'
+Usage: argus-fetch [options]
+
+Copies the charts written by Argus on your servers to this computer. Argus
+runs on the servers; you read the charts here.
+
+Configuration: ~/.config/argus/hosts.conf, one machine per line:
+
+  <ssh_alias>,<remote_path>
+
+where <ssh_alias> is a Host name of ~/.ssh/config (or a user@host address) and
+<remote_path> is the Argus data directory of that machine (ARGUS_DATA_DIR,
+/srv/argus/ by default). Empty lines and lines starting with # are ignored.
+See hosts.conf.example.
+
+For each machine, argus-fetch opens ONE ssh connection (BatchMode, 10 s connect
+timeout) and copies the PNG files of <remote_path>/<year>/images/ into
+~/argus-backup/<ssh_alias>/<year>/images/. It never retries: some servers ban
+an address after a few failed logins. A machine that does not answer is
+reported on standard error, the other machines are still handled, and the
+exit code is 1. Files already present locally are never overwritten and
+nothing is deleted.
+
+Options:
+  --config FILE    read FILE instead of ~/.config/argus/hosts.conf
+  --dest DIR       backup directory instead of ~/argus-backup
+  --only ALIAS     handle only the machine of that ssh alias
+  --local-source   test mode: <remote_path> is a directory of this computer
+                   and no ssh connection is made; the alias only names the
+                   destination sub-directory
+  -h, --help       show this help
+
+Example:
+  argus-fetch
+  argus-fetch --only serveur.exemple.org
+
+Exit codes: 0 every machine was copied, 1 at least one machine failed or the
+configuration is missing, 2 invalid usage.
+HELP
+}
+
+erreur_usage() { echo "argus-fetch: $1 (see --help)" >&2; exit 2; }
+
+CONF="${HOME}/.config/argus/hosts.conf"
+DEST="${HOME}/argus-backup"
+SEUL=""
+LOCAL=0
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --config) [ $# -ge 2 ] || erreur_usage "--config needs a file"; CONF="$2"; shift 2 ;;
+        --dest) [ $# -ge 2 ] || erreur_usage "--dest needs a directory"; DEST="$2"; shift 2 ;;
+        --only) [ $# -ge 2 ] || erreur_usage "--only needs an alias"; SEUL="$2"; shift 2 ;;
+        --local-source) LOCAL=1; shift ;;
+        -h|--help) usage; exit 0 ;;
+        *) erreur_usage "unknown option '$1'" ;;
+    esac
+done
+
+command -v rsync >/dev/null 2>&1 || { echo "argus-fetch: rsync is required" >&2; exit 2; }
+[ "$LOCAL" -eq 1 ] || command -v ssh >/dev/null 2>&1 || { echo "argus-fetch: ssh is required" >&2; exit 2; }
+
+if [ ! -f "$CONF" ]; then
+    echo "argus-fetch: $CONF not found; create it from hosts.conf.example" >&2
+    exit 1
+fi
+
+statut=0
+traitees=0
+while IFS=',' read -r alias chemin reste || [ -n "$alias" ]; do
+    alias="${alias//[$' \t\r']/}"
+    case "$alias" in ''|\#*) continue ;; esac
+    chemin="${chemin//$'\r'/}"
+    if [ -n "$SEUL" ] && [ "$alias" != "$SEUL" ]; then continue; fi
+    # Un alias commençant par « - » serait lu comme une option de rsync.
+    if ! [[ "$alias" =~ ^[A-Za-z0-9_][A-Za-z0-9._@:-]*$ ]] || [ -z "$chemin" ]; then
+        echo "argus-fetch: invalid line in $CONF for '$alias' (expected <ssh_alias>,<remote_path>)" >&2
+        statut=1; continue
+    fi
+    traitees=$((traitees + 1))
+    mkdir -p "$DEST/$alias"
+    if [ "$LOCAL" -eq 1 ]; then
+        source="${chemin%/}/"
+        reseau=()
+    else
+        source="${alias}:${chemin%/}/"
+        reseau=(-e "ssh -o BatchMode=yes -o ConnectTimeout=10")
+    fi
+    # Une seule invocation de rsync = une seule connexion ; les filtres ne
+    # gardent que les PNG des dossiers images/, et --ignore-existing interdit
+    # d'écraser un fichier déjà rapatrié.
+    if erreur="$(rsync -a --prune-empty-dirs --ignore-existing --timeout=60 "${reseau[@]}" \
+            --include='*/' --include='*/images/*.png' --exclude='*' \
+            "$source" "$DEST/$alias/" 2>&1)"; then
+        n="$(find "$DEST/$alias" -name '*.png' | wc -l)"
+        echo "$alias: done, $n PNG in $DEST/$alias/"
+    else
+        echo "argus-fetch: $alias did not answer or the copy failed; one attempt only, not retried (${erreur##*$'\n'})" >&2
+        statut=1
+    fi
+done < "$CONF"
+
+if [ -n "$SEUL" ] && [ "$traitees" -eq 0 ]; then
+    echo "argus-fetch: alias '$SEUL' is not in $CONF" >&2
+    statut=1
+fi
+exit "$statut"
