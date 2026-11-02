@@ -45,9 +45,9 @@ tail -n 20 /var/log/argus.log
 ## Common causes
 
 - **No image after the first night.** Check that `/etc/cron.d/argus` exists and that cron runs (`systemctl status cron`). Run `sudo /opt/argus/chart-daily.sh` and read its message.
-- **`no data file for 2026 … nothing to plot`.** No collector has written a file this year. Run `sudo /opt/argus/collect-ssh.sh`; a quiet server writes no file until its first attack.
+- **`chart-daily.sh: no data file for 2026 in /srv/argus/2026 — nothing to plot.`** No collector has written a file this year. A server without any attack writes none. Run `sudo /opt/argus/collect-ssh.sh` to collect yesterday.
 - **SSH shows 0 events every day.** `auth.log` is absent and `journald` holds the logs under another unit name. Set `ARGUS_SSHD_UNIT="sshd"` in `/etc/argus/argus.conf` (the default is `ssh`).
-- **Fewer attacks than Fail2Ban bans.** `ARGUS_SSH_THRESHOLD` (5 failed attempts in one day by default) is stricter than your Fail2Ban `maxretry`. Lower it to compare.
+- **Fewer SSH attacks than Fail2Ban bans.** Argus counts an IP only after `ARGUS_SSH_THRESHOLD` failed attempts in one day (5 by default), and Fail2Ban can ban earlier. Lower the threshold to compare.
 - **`argus-chart: unknown view`.** The views are `period`, `hourly` and `daily`.
 - **`unknown series`.** List the names with `argus-chart period --list-series`.
 - **`argus-fetch` reports a host.** The server did not answer on the first try, and `argus-fetch` does not retry. Check the alias, the key and the firewall, then run it again. See [desk.md](desk.md).

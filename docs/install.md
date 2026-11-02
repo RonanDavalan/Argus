@@ -24,6 +24,7 @@ The package goes on the **server**, the machine whose logs Argus reads. You do n
 └── 2026/
     ├── ssh_direct_2026.txt      one line per hour with an attack
     ├── ip_ban_sshd_2026.txt     one file per Fail2Ban jail, if present
+    ├── .daily/                  daily totals, rebuilt by chart-daily.sh
     ├── .heartbeat/              daily proof that each collector ran
     └── images/                  the PNG charts
 ```
@@ -32,7 +33,7 @@ The package goes on the **server**, the machine whose logs Argus reads. You do n
 
 ## Requirements
 
-Debian 12 or later, or Ubuntu 22.04 or later. The package depends on `gawk` and `gnuplot-nox`; `apt` installs them. Fail2Ban, CrowdSec and `jq` are optional. A server with 1 GB of RAM is enough: nothing stays running.
+A Debian or Ubuntu server with cron. The package depends on `gawk` and `gnuplot-nox`; `apt` installs them. `rsync` and `openssh-client` are recommended (they serve `argus-fetch`). Fail2Ban, CrowdSec and `jq` are optional. A server with 1 GB of RAM is enough: nothing stays running.
 
 ## Install
 

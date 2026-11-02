@@ -19,7 +19,7 @@ Grafana is a continuous view of an infrastructure: a service that runs all the t
 
 # TWO STEPS
 
-The package is installed on the **server**, not on the desk.
+The package is installed on the **server**, the machine that is attacked, not on the desk (the computer you read from).
 
 1. On the server, the package counts the attacks and draws the charts every night.
 2. On the desk, **argus-fetch**(1) copies the images from the servers to the computer you read them on.

@@ -57,7 +57,7 @@ Open the images with any viewer:
 xdg-open ~/argus-backup/server.example.org/2026/images/
 ```
 
-A chart shows one line per series, with the exact count at each point. A view that does not exist yet (another week, a month by hour) is drawn on the server, as root so that the image lands in the images folder:
+A chart shows one line per series. On a window of up to 31 points, the exact count is written at each point. A view that does not exist yet (another week, a month by hour) is drawn on the server, as root so that the image lands in the images folder:
 
 ```bash
 ssh server.example.org

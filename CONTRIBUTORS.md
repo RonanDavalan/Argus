@@ -12,6 +12,7 @@ updated as people contribute, not at release time.
 *   **Gemini (Google)** — Synthesizer and strategic co-writer. Planning of on-demand multi-machine chart generation and framing of the project's purpose; its claims were cross-checked against the code.
 *   **minimax-m3.1-flash-free (MiniMax)** — Graphiste: the project's visual identity (mark, logotype, favicon, 3D emblem), drawn on 2026-10-20 and adopted by Ronan Davalan.
 *   **DeepSeek** — Field companion. Installed and configured the CrowdSec instance on a real server against which `collect-crowdsec.sh` was validated and corrected.
+*   **gd2:** Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
 
 ## Heritage
 

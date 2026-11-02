@@ -43,7 +43,7 @@ argus-chart period --year 2026 --split month --out ~/argus-out
 
 ## The hour of the day
 
-`hourly` adds up, for each series, the attacks seen at each hour over the window, and draws 24 positions. It shows when you are attacked, not when over the year.
+`hourly` adds up, for each series, the attacks seen at each hour over the window, and draws 24 positions. It shows at which hours of the day you are attacked, not on which days.
 
 ```bash
 argus-chart hourly --week 2026-W44 --out ~/argus-out

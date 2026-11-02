@@ -10,7 +10,7 @@ Grafana is a continuous view of an infrastructure: a service that runs all the t
 
 ## Install in two steps
 
-The package goes on the **server**, not on your desk. This is the opposite of what you do for most programs.
+If you usually install a program on the computer you work on, here it is the reverse. The package goes on the **server**, the machine that is attacked. Your own computer, the desk, installs nothing of the package and only receives the images.
 
 1. **On the server** (the machine that is attacked), install the package. It counts the attacks and draws the charts every night. There is nothing to launch afterwards.
 2. **On your desk** (the computer you read from), run `argus-fetch`. It copies the chart images from your servers to your computer.
@@ -112,7 +112,7 @@ Argus is the result of a human-LLM collaboration, with the roles written down as
 *   **Gemini (Google)** — Synthesizer and strategic co-writer: planning and framing of the project's purpose.
 *   **minimax-m3.1-flash-free (MiniMax)** — Graphiste: the project's visual identity (mark, logotype, favicon, 3D emblem).
 *   **DeepSeek** — Field companion: CrowdSec setup on a real server used to validate `collect-crowdsec.sh`.
-*   **gd2** — Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
+*   **gd2:** Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
 
 ---
 
