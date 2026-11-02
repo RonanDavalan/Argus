@@ -1,0 +1,51 @@
+#!/bin/bash
+# argus-chart — point d'entrée unique des graphiques : choisit le script de la
+# vue demandée et lui passe les options telles quelles, sans logique propre.
+set -Eeuo pipefail
+
+usage() {
+    cat <<'HELP'
+Usage: argus-chart period|hourly|daily [options]
+
+Single entry point of the Argus charts. The options after the view name are
+passed unchanged to the script of that view:
+
+  period   attack count per series over a window (day, week, month, quarter,
+           year or range), one line per series       -> chart-period.sh
+  hourly   attack count per hour of the day over a window  -> chart-hourly.sh
+  daily    yearly history, one point per day          -> chart-daily.sh [YEAR]
+
+Examples:
+  argus-chart period --week 2026-W44
+  argus-chart period --month 2026-10 --split week
+  argus-chart daily 2026
+
+Run "argus-chart <view> --help" for the options of a view (period and hourly).
+The scripts are looked up next to this command, then in /opt/argus.
+
+Exit codes: 0 success, 2 unknown view or view not available in this version;
+any other code is the one of the script that was run.
+HELP
+}
+
+[ $# -ge 1 ] || { usage >&2; exit 2; }
+case "$1" in
+    -h|--help) usage; exit 0 ;;
+esac
+
+vue="$1"; shift
+case "$vue" in
+    period) script="chart-period.sh" ;;
+    hourly) script="chart-hourly.sh" ;;
+    daily)  script="chart-daily.sh" ;;
+    *) echo "argus-chart: unknown view '$vue' (period, hourly or daily)" >&2; exit 2 ;;
+esac
+
+ici="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+for dossier in "$ici" /opt/argus; do
+    if [ -f "$dossier/$script" ]; then
+        exec bash "$dossier/$script" "$@"
+    fi
+done
+echo "argus-chart: the '$vue' view is not available in this version ($script not found)" >&2
+exit 2
