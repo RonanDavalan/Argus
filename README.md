@@ -110,7 +110,7 @@ Argus is the result of a human-LLM collaboration, with the roles written down as
 *   **Ronan Davalan** — Architect and arbiter: original scripts (2024), decisions, validation and testing.
 *   **Claude Code (Anthropic)** — Lead developer: collectors, chart rendering, `argus-doctor.sh`, Debian package, documentation.
 *   **Gemini (Google)** — Synthesizer and strategic co-writer: planning and framing of the project's purpose.
-*   **minimax-m3.1-flash-free (MiniMax)** — Graphiste: the project's visual identity (mark, logotype, favicon, 3D emblem).
+*   **Gemini (Google), GLM-5.3-Flash Free and Gemini 4 Argon** — Graphic designers: the project's visual identity (mark, icon, favicon), adopted by Ronan Davalan on 2026-11-02.
 *   **DeepSeek** — Field companion: CrowdSec setup on a real server used to validate `collect-crowdsec.sh`.
 *   **gd2:** Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
 

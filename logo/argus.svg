@@ -1,6 +1,757 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img">
-<title>Argus</title>
-<desc>Un carré arrondi sombre portant un œil ambre dont la paupière supérieure se hausse en pic, et une pupille pleine.</desc>
-<rect x="4" y="4" width="120" height="120" rx="28" fill="#14181c"/><path d="M 20 62 C 30 42 44 30 60 29 C 80 31 96 45 108 62 C 94 80 38 82 20 62 Z" fill="none" stroke="#f2a63b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="64" cy="52" r="13.5" fill="#f2a63b"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 512 512"
+   width="512"
+   height="512"
+   version="1.1"
+   id="svg88"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <title
+     id="title1">Oeil d Argus geometrique</title>
+  <rect
+     x="6"
+     y="6"
+     width="500"
+     height="500"
+     rx="88"
+     ry="88"
+     fill="#2E9E96"
+     id="rect2" />
+  <rect
+     x="24"
+     y="24"
+     width="464"
+     height="464"
+     rx="78"
+     ry="78"
+     fill="#0B131A"
+     id="rect3" />
+  <g
+     transform="rotate(0 256 256)"
+     id="g20">
+    <path
+       d="M 90 66 H 422"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       id="base_0" />
+    <path
+       d="M 90 66 V 42 H 110 V 55 H 97"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_0" />
+    <path
+       d="M 114 66 V 42 H 134 V 55 H 121"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_1" />
+    <path
+       d="M 138 66 V 42 H 158 V 55 H 145"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_2" />
+    <path
+       d="M 162 66 V 42 H 182 V 55 H 169"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_3" />
+    <path
+       d="M 186 66 V 42 H 206 V 55 H 193"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_4" />
+    <path
+       d="M 210 66 V 42 H 230 V 55 H 217"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_5" />
+    <path
+       d="M 234 66 V 42 H 254 V 55 H 241"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_6" />
+    <path
+       d="M 258 66 V 42 H 278 V 55 H 265"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_7" />
+    <path
+       d="M 282 66 V 42 H 302 V 55 H 289"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_8" />
+    <path
+       d="M 306 66 V 42 H 326 V 55 H 313"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_9" />
+    <path
+       d="M 330 66 V 42 H 350 V 55 H 337"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_10" />
+    <path
+       d="M 354 66 V 42 H 374 V 55 H 361"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_11" />
+    <path
+       d="M 378 66 V 42 H 398 V 55 H 385"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_12" />
+    <path
+       d="M 402 66 V 42 H 422 V 55 H 409"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_0_13" />
+  </g>
+  <g
+     transform="rotate(90 256 256)"
+     id="g38">
+    <path
+       d="M 90 66 H 422"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       id="base_1" />
+    <path
+       d="M 90 66 V 42 H 110 V 55 H 97"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_0" />
+    <path
+       d="M 114 66 V 42 H 134 V 55 H 121"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_1" />
+    <path
+       d="M 138 66 V 42 H 158 V 55 H 145"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_2" />
+    <path
+       d="M 162 66 V 42 H 182 V 55 H 169"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_3" />
+    <path
+       d="M 186 66 V 42 H 206 V 55 H 193"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_4" />
+    <path
+       d="M 210 66 V 42 H 230 V 55 H 217"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_5" />
+    <path
+       d="M 234 66 V 42 H 254 V 55 H 241"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_6" />
+    <path
+       d="M 258 66 V 42 H 278 V 55 H 265"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_7" />
+    <path
+       d="M 282 66 V 42 H 302 V 55 H 289"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_8" />
+    <path
+       d="M 306 66 V 42 H 326 V 55 H 313"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_9" />
+    <path
+       d="M 330 66 V 42 H 350 V 55 H 337"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_10" />
+    <path
+       d="M 354 66 V 42 H 374 V 55 H 361"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_11" />
+    <path
+       d="M 378 66 V 42 H 398 V 55 H 385"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_12" />
+    <path
+       d="M 402 66 V 42 H 422 V 55 H 409"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_1_13" />
+  </g>
+  <g
+     transform="rotate(180 256 256)"
+     id="g56">
+    <path
+       d="M 90 66 H 422"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       id="base_2" />
+    <path
+       d="M 90 66 V 42 H 110 V 55 H 97"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_0" />
+    <path
+       d="M 114 66 V 42 H 134 V 55 H 121"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_1" />
+    <path
+       d="M 138 66 V 42 H 158 V 55 H 145"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_2" />
+    <path
+       d="M 162 66 V 42 H 182 V 55 H 169"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_3" />
+    <path
+       d="M 186 66 V 42 H 206 V 55 H 193"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_4" />
+    <path
+       d="M 210 66 V 42 H 230 V 55 H 217"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_5" />
+    <path
+       d="M 234 66 V 42 H 254 V 55 H 241"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_6" />
+    <path
+       d="M 258 66 V 42 H 278 V 55 H 265"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_7" />
+    <path
+       d="M 282 66 V 42 H 302 V 55 H 289"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_8" />
+    <path
+       d="M 306 66 V 42 H 326 V 55 H 313"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_9" />
+    <path
+       d="M 330 66 V 42 H 350 V 55 H 337"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_10" />
+    <path
+       d="M 354 66 V 42 H 374 V 55 H 361"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_11" />
+    <path
+       d="M 378 66 V 42 H 398 V 55 H 385"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_12" />
+    <path
+       d="M 402 66 V 42 H 422 V 55 H 409"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_2_13" />
+  </g>
+  <g
+     transform="rotate(270 256 256)"
+     id="g74">
+    <path
+       d="M 90 66 H 422"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       id="base_3" />
+    <path
+       d="M 90 66 V 42 H 110 V 55 H 97"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_0" />
+    <path
+       d="M 114 66 V 42 H 134 V 55 H 121"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_1" />
+    <path
+       d="M 138 66 V 42 H 158 V 55 H 145"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_2" />
+    <path
+       d="M 162 66 V 42 H 182 V 55 H 169"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_3" />
+    <path
+       d="M 186 66 V 42 H 206 V 55 H 193"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_4" />
+    <path
+       d="M 210 66 V 42 H 230 V 55 H 217"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_5" />
+    <path
+       d="M 234 66 V 42 H 254 V 55 H 241"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_6" />
+    <path
+       d="M 258 66 V 42 H 278 V 55 H 265"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_7" />
+    <path
+       d="M 282 66 V 42 H 302 V 55 H 289"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_8" />
+    <path
+       d="M 306 66 V 42 H 326 V 55 H 313"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_9" />
+    <path
+       d="M 330 66 V 42 H 350 V 55 H 337"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_10" />
+    <path
+       d="M 354 66 V 42 H 374 V 55 H 361"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_11" />
+    <path
+       d="M 378 66 V 42 H 398 V 55 H 385"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_12" />
+    <path
+       d="M 402 66 V 42 H 422 V 55 H 409"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="miter"
+       id="meander_3_13" />
+  </g>
+  <g
+     transform="rotate(0 256 256)"
+     id="corner_ornament_0">
+    <path
+       d="M 80 42 H 72 A 30 30 0 0 0 42 72 V 80"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="round"
+       id="corner_arc_0" />
+    <polygon
+       points="68,55 81,68 68,81 55,68"
+       fill="#0B131A"
+       stroke="#DCA134"
+       stroke-width="4"
+       stroke-linejoin="round"
+       id="corner_diamond_0" />
+    <circle
+       cx="68"
+       cy="68"
+       r="3.5"
+       fill="#DCA134"
+       id="corner_dot_0" />
+    <path
+       d="M 92 132 V 122 A 30 30 0 0 1 122 92 H 132"
+       fill="none"
+       stroke="#DCA134"
+       stroke-width="3.5"
+       stroke-linecap="round"
+       id="corner_inner_0" />
+  </g>
+  <g
+     transform="rotate(90 256 256)"
+     id="corner_ornament_1">
+    <path
+       d="M 80 42 H 72 A 30 30 0 0 0 42 72 V 80"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="round"
+       id="corner_arc_1" />
+    <polygon
+       points="68,55 81,68 68,81 55,68"
+       fill="#0B131A"
+       stroke="#DCA134"
+       stroke-width="4"
+       stroke-linejoin="round"
+       id="corner_diamond_1" />
+    <circle
+       cx="68"
+       cy="68"
+       r="3.5"
+       fill="#DCA134"
+       id="corner_dot_1" />
+    <path
+       d="M 92 132 V 122 A 30 30 0 0 1 122 92 H 132"
+       fill="none"
+       stroke="#DCA134"
+       stroke-width="3.5"
+       stroke-linecap="round"
+       id="corner_inner_1" />
+  </g>
+  <g
+     transform="rotate(180 256 256)"
+     id="corner_ornament_2">
+    <path
+       d="M 80 42 H 72 A 30 30 0 0 0 42 72 V 80"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="round"
+       id="corner_arc_2" />
+    <polygon
+       points="68,55 81,68 68,81 55,68"
+       fill="#0B131A"
+       stroke="#DCA134"
+       stroke-width="4"
+       stroke-linejoin="round"
+       id="corner_diamond_2" />
+    <circle
+       cx="68"
+       cy="68"
+       r="3.5"
+       fill="#DCA134"
+       id="corner_dot_2" />
+    <path
+       d="M 92 132 V 122 A 30 30 0 0 1 122 92 H 132"
+       fill="none"
+       stroke="#DCA134"
+       stroke-width="3.5"
+       stroke-linecap="round"
+       id="corner_inner_2" />
+  </g>
+  <g
+     transform="rotate(270 256 256)"
+     id="corner_ornament_3">
+    <path
+       d="M 80 42 H 72 A 30 30 0 0 0 42 72 V 80"
+       fill="none"
+       stroke="#2E9E96"
+       stroke-width="5"
+       stroke-linecap="square"
+       stroke-linejoin="round"
+       id="corner_arc_3" />
+    <polygon
+       points="68,55 81,68 68,81 55,68"
+       fill="#0B131A"
+       stroke="#DCA134"
+       stroke-width="4"
+       stroke-linejoin="round"
+       id="corner_diamond_3" />
+    <circle
+       cx="68"
+       cy="68"
+       r="3.5"
+       fill="#DCA134"
+       id="corner_dot_3" />
+    <path
+       d="M 92 132 V 122 A 30 30 0 0 1 122 92 H 132"
+       fill="none"
+       stroke="#DCA134"
+       stroke-width="3.5"
+       stroke-linecap="round"
+       id="corner_inner_3" />
+  </g>
+  <rect
+     x="78"
+     y="78"
+     width="356"
+     height="356"
+     rx="44"
+     ry="44"
+     fill="none"
+     stroke="#DCA134"
+     stroke-width="5"
+     id="rect74" />
+  <g
+     id="g77">
+    <path
+       d="M 164.41 261.23 A 108 108 0 0 1 168.63 140.52 L 157.3 132.29 A 122 122 0 0 0 152.54 268.65 Z"
+       fill="#DCA134"
+       id="path75" />
+    <path
+       d="M 149.15 270.77 A 126 126 0 0 1 154.06 129.94 L 142.74 121.71 A 140 140 0 0 0 137.27 278.19 Z"
+       fill="#DCA134"
+       id="path76" />
+    <path
+       d="M 133.88 280.31 A 144 144 0 0 1 139.5 119.36 L 128.18 111.13 A 158 158 0 0 0 122.01 287.73 Z"
+       fill="#DCA134"
+       id="path77" />
+  </g>
+  <g
+     transform="translate(512 0) scale(-1 1)"
+     id="g80">
+    <path
+       d="M 164.41 261.23 A 108 108 0 0 1 168.63 140.52 L 157.3 132.29 A 122 122 0 0 0 152.54 268.65 Z"
+       fill="#DCA134"
+       id="path78" />
+    <path
+       d="M 149.15 270.77 A 126 126 0 0 1 154.06 129.94 L 142.74 121.71 A 140 140 0 0 0 137.27 278.19 Z"
+       fill="#DCA134"
+       id="path79" />
+    <path
+       d="M 133.88 280.31 A 144 144 0 0 1 139.5 119.36 L 128.18 111.13 A 158 158 0 0 0 122.01 287.73 Z"
+       fill="#DCA134"
+       id="path80" />
+  </g>
+  <path
+     d="M 256 408 L 343.16 253.02 A 100 100 0 1 0 168.84 253.02 Z"
+     fill="none"
+     stroke="#DCA134"
+     stroke-width="8"
+     stroke-linejoin="round"
+     id="path81" />
+  <path
+     d="M 256 377.4 L 330.09 245.67 A 85 85 0 1 0 181.91 245.67 Z"
+     fill="none"
+     stroke="#115E67"
+     stroke-width="8"
+     stroke-linejoin="round"
+     id="path82" />
+  <path
+     d="M 256 346.8 L 317.01 238.31 A 70 70 0 1 0 194.99 238.31 Z"
+     fill="none"
+     stroke="#DCA134"
+     stroke-width="6"
+     stroke-linejoin="round"
+     id="path83" />
+  <path
+     d="M 166 208 C 204 164 308 164 346 208 L 332 208 C 296 176 216 176 180 208 Z"
+     fill="#DCA134"
+     id="path84" />
+  <defs
+     id="defs85">
+    <clipPath
+       id="eyeClip">
+      <path
+         d="M 184 210 C 218 176 294 176 328 210 C 294 244 218 244 184 210 Z"
+         id="path85" />
+    </clipPath>
+  </defs>
+  <path
+     d="M 184 210 C 218 176 294 176 328 210 C 294 244 218 244 184 210 Z"
+     fill="#F2EDDC"
+     stroke="#0B131A"
+     stroke-width="5"
+     stroke-linejoin="round"
+     id="path86" />
+  <g
+     clip-path="url(#eyeClip)"
+     id="g88">
+    <circle
+       cx="256"
+       cy="208"
+       r="27"
+       fill="#115E67"
+       stroke="#0B131A"
+       stroke-width="5"
+       id="circle86" />
+    <circle
+       cx="256"
+       cy="208"
+       r="14"
+       fill="#0B131A"
+       id="circle87" />
+    <circle
+       cx="250.5"
+       cy="202.5"
+       r="5.2"
+       fill="#F2EDDC"
+       id="circle88" />
+  </g>
 </svg>
