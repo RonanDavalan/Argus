@@ -3,6 +3,13 @@ collect-fail2ban.sh opt/argus/
 collect-crowdsec.sh opt/argus/
 chart-daily.sh opt/argus/
 chart-daily.gp opt/argus/
+chart-period.sh opt/argus/
+chart-period.gp opt/argus/
+chart-hourly.sh opt/argus/
+chart-hourly.gp opt/argus/
+argus-lib.sh opt/argus/
 argus-doctor.sh opt/argus/
+argus-chart usr/bin/
+argus-fetch usr/bin/
 logo/argus.svg usr/share/icons/hicolor/scalable/apps/
 logo/argus-48.png usr/share/icons/hicolor/48x48/apps/

@@ -2,12 +2,13 @@ Source: argus
 Section: admin
 Priority: optional
 Maintainer: Ronan Davalan <ronan@davalan.fr>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), pandoc
 Standards-Version: 4.6.2
 
 Package: argus
 Architecture: all
 Depends: ${misc:Depends}, gawk, gnuplot-nox
+Recommends: rsync, openssh-client
 Suggests: fail2ban, crowdsec, jq
 Description: SSH attack counter and historical chart, no dependency required
  Argus counts SSH authentication attacks directly from auth.log or journald
@@ -19,6 +20,11 @@ Description: SSH attack counter and historical chart, no dependency required
  detection) as additional series on the same chart — both can run at once.
  Never displays individual attacker IP addresses — only their daily count.
  .
+ No permanent service, no database, suited to machines with less than 1 GB
+ of RAM. Install it on the server: it counts and draws every night. On your
+ desk, argus-fetch copies the charts from your servers, and argus-chart draws
+ other views (week, month, range, hour of the day) on the server.
+ .
  Installs under /opt/argus/, data under /srv/argus/ (world-readable, no
- sudo needed to retrieve a chart via scp/rsync), configuration under
- /etc/argus/. Two cron jobs: nightly collection, nightly chart render.
+ sudo needed to retrieve a chart), configuration under /etc/argus/. Cron
+ jobs: nightly collection, chart render and health check.

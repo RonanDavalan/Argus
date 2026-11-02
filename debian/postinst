@@ -54,7 +54,7 @@ case "$1" in
 # Chart appearance (chart-daily.sh/.gp).
 # ARGUS_IMG_WIDTH=3840
 # ARGUS_IMG_HEIGHT=2160
-# ARGUS_LANG=en                  # or "fr" — resolves the chart's own title/axes
+# ARGUS_LANG=en                  # en, fr, de or es — language of the chart titles and axes
 
 # Stable colour per series, keyed by the series name with hyphens turned
 # into underscores (e.g. the "caddy-xmlrpc" series is looked up as
@@ -70,13 +70,17 @@ CONF_EOF
 
         echo ""
         echo "=========================================================="
-        echo " Argus installed."
-        echo " Nightly cron jobs are active (see /etc/cron.d/argus)."
-        echo " First chart appears after the first full night of collection."
-        echo " To back-test now, on a day that already has log history:"
-        echo "   sudo /opt/argus/collect-ssh.sh && sudo /opt/argus/chart-daily.sh"
-        echo " Chart output: $DATA_DIR/<year>/images/"
-        echo " Retrieve without sudo: rsync -avz host:$DATA_DIR/ ./argus-backup/"
+        echo " Argus installed on this server (step 1 of 2)."
+        echo " It counts the attacks and draws the charts every night"
+        echo " (see /etc/cron.d/argus); nothing else to start."
+        echo " Charts: $DATA_DIR/<year>/images/"
+        echo " Other views, on this server:  sudo argus-chart period --week 2026-W44"
+        echo ""
+        echo " Step 2 is on your desk, not here: install argus-fetch there"
+        echo " (it is in this package, or copy the script) and run it to"
+        echo " copy the images to your computer:"
+        echo "   argus-fetch"
+        echo " See: man argus-fetch, /usr/share/doc/argus/docs/desk.md"
         echo "=========================================================="
         echo ""
         ;;

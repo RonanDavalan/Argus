@@ -1,3 +1,16 @@
+argus (1.0.0-11) UNRELEASED; urgency=low
+
+  * The package now installs the period and hourly views: chart-period.sh,
+    chart-hourly.sh and argus-lib.sh under /opt/argus, and the commands
+    argus-chart and argus-fetch in /usr/bin. chart-daily.sh and the
+    collectors are untouched.
+  * Manual pages argus(7), argus-chart(1) and argus-fetch(1), generated from
+    man/<language>/ at build time, and the guides in /usr/share/doc/argus/.
+  * The message at the end of the installation explains the two steps: the
+    package on the server, argus-fetch on the desk.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Mon, 02 Nov 2026 16:35:00 +0100
+
 argus (1.0.0-10) unstable; urgency=low
 
   * The package now carries the project's icon: logo/argus.svg is installed

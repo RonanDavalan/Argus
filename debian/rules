@@ -1,4 +1,33 @@
 #!/usr/bin/make -f
 
+VERSION := $(shell dpkg-parsechangelog -SVersion)
+DATE := $(shell date -u -d @$$(dpkg-parsechangelog -STimestamp) +%Y-%m-%d)
+PAGES := argus.7 argus-chart.1 argus-fetch.1
+
 %:
 	dh $@
+
+# Pas de formules entre dollars : les chemins comme $XDG_CONFIG_HOME s'y prendraient.
+# La page anglaise est celle de man/en/ ; une langue dont le dossier man/<langue>/ porte la page est ajoutée sous le nom <page>.<langue>.<section>.
+# pandoc écrit \f[C] pour la police fixe des blocs de code, que groff 1.23 ne connaît plus : \f[CR].
+override_dh_auto_build:
+	mkdir -p debian/man
+	set -e; for page in $(PAGES); do \
+	  name=$${page%.*}; section=$${page##*.}; \
+	  pandoc --standalone --from markdown-smart-tex_math_dollars --to man -M footer="argus $(VERSION)" -M date=$(DATE) \
+	    man/en/$$page.md -o debian/man/$$page; \
+	  for lang in fr de es; do \
+	    if [ -f man/$$lang/$$page.md ]; then \
+	      pandoc --standalone --from markdown-smart-tex_math_dollars --to man -M footer="argus $(VERSION)" -M date=$(DATE) \
+	        man/$$lang/$$page.md -o debian/man/$$name.$$lang.$$section; \
+	    fi; \
+	  done; \
+	done
+	sed -i 's/\\f\[C\]/\\f[CR]/g' debian/man/*
+
+override_dh_auto_clean:
+	rm -rf debian/man
+
+# Les liens relatifs du README et des guides supposent des fichiers .md non compressés.
+override_dh_compress:
+	dh_compress -X.md
