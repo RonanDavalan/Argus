@@ -38,10 +38,10 @@ Ein Debian- oder Ubuntu-Server mit Cron. Das Paket hängt von `gawk` und `gnuplo
 
 ## Installation
 
-Laden Sie `argus_1.0.0-11_all.deb` von der Release-Seite des Repositorys herunter und führen Sie dann auf dem Server aus:
+Laden Sie `argus_1.0.0-12_all.deb` von der Release-Seite des Repositorys herunter und führen Sie dann auf dem Server aus:
 
 ```bash
-sudo apt install ./argus_1.0.0-11_all.deb
+sudo apt install ./argus_1.0.0-12_all.deb
 ```
 
 

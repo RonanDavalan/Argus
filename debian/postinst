@@ -48,7 +48,7 @@ case "$1" in
 # directory instead of staying root-owned under /srv/argus. Collection
 # itself still runs as root via cron either way (reliable regardless of
 # whether this user has read access to auth.log/fail2ban.log/CrowdSec).
-# ARGUS_DATA_DIR="/home/alice/argus"
+# ARGUS_DATA_DIR="/data/argus"
 # ARGUS_DATA_OWNER="alice"
 
 # Chart appearance (chart-daily.sh/.gp).

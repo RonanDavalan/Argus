@@ -30,7 +30,7 @@ server.example.org (the server)           your desk
 Step 1, on the server (Debian or Ubuntu):
 
 ```bash
-sudo apt install ./argus_1.0.0-11_all.deb
+sudo apt install ./argus_1.0.0-12_all.deb
 ```
 
 Step 2, on your desk. Put your servers in the file `~/.config/argus/hosts.conf`, one per line, as `<ssh alias>,<data directory>`, then run `argus-fetch`:

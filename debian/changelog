@@ -1,3 +1,11 @@
+argus (1.0.0-12) unstable; urgency=low
+
+  * Comments of postinst and postrm and entries of this changelog no longer
+    refer to the maintainer's private notes, and the example data directory
+    of postinst no longer names a home directory. No functional change.
+
+ -- Ronan Davalan <ronan@davalan.fr>  Tue, 03 Nov 2026 02:00:00 +0100
+
 argus (1.0.0-11) unstable; urgency=low
 
   * The package now installs the period and hourly views: chart-period.sh,
@@ -124,7 +132,7 @@ argus (1.0.0-4) unstable; urgency=medium
     to underscores for the variable name — a hard bash constraint, hyphens
     are not valid in shell identifiers).
   * Legacy 2024 scripts fully removed from the repository (not just
-    untracked) — copy preserved in the private _CADRE archive, never
+    untracked) — a copy is kept in the maintainer's private archive, never
     published. scripts/preflight-publication.sh moved out of the public
     repository entirely (maintainer-only tool, zero value to someone
     installing Argus).
@@ -183,7 +191,7 @@ argus (1.0.0-1) unstable; urgency=medium
     ("<count> <date>Thour>") — deliberate choice to avoid database
     corruption risk over a multi-year horizon, and to make an hour/day-of-
     week breakdown possible later without any new collection (deferred to
-    v1.1+, see SPECIFICATIONS/V1_0_0_PUBLICATION.md in the private _CADRE).
+    v1.1+).
   * plot.sh aggregates the hourly buckets to daily totals, then renders via
     plot.gp — adapted from the original 2024 gnuplot script (unlimited
     historical horizon, dynamic multi-series discovery), otherwise

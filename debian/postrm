@@ -5,8 +5,7 @@
 #          possible sans perdre l'historique.
 # purge  : supprime aussi /srv/argus et /etc/argus.
 #
-# Aucun groupe système à gérer ici (abandonné en v1.0.0, voir
-# SPECIFICATIONS/V1_0_0_PUBLICATION.md du _CADRE privé) : /srv/argus est
+# Aucun groupe système à gérer ici (abandonné en v1.0.0) : /srv/argus est
 # root:root 755 avec des fichiers lisibles de tous, par choix, car rien de ce
 # qu'il contient n'est sensible (aucune adresse IP individuelle, seulement des
 # totaux quotidiens).
