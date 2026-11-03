@@ -1,5 +1,18 @@
 # Argus
 
+<p align="center">
+  <a href="https://github.com/RonanDavalan/Argus/releases/latest"><img src="https://img.shields.io/github/v/release/RonanDavalan/Argus?label=version" alt="Version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Platform-Debian_%C2%B7_Ubuntu-informational.svg" alt="Debian and Ubuntu">
+  <img src="https://img.shields.io/badge/Shell-Bash_%C2%B7_gnuplot-lightgrey.svg" alt="Bash and gnuplot">
+</p>
+
+**English** | [Français](README.fr.md) | [Deutsch](README.de.md) | [Español](README.es.md)
+
+<p align="center">
+  <a href="https://argus.davalan.fr/images/argus-daily-4k.png"><img src="https://argus.davalan.fr/images/argus-daily-1600.jpg" alt="Argus: daily chart of attacks per series, one line each for SSH, Fail2Ban and CrowdSec" width="800"></a>
+</p>
+
 No permanent service, no database, suited to machines with less than 1 GB of RAM.
 
 Argus counts the attacks against your servers, SSH by itself and, when they are installed, the bans of Fail2Ban and CrowdSec, and keeps the history as charts. A nightly cron job writes plain text files and draws the charts. Nothing runs between two nights.
