@@ -133,7 +133,7 @@ Argus ist das Ergebnis einer Zusammenarbeit zwischen einem Menschen und mehreren
 *   **DeepSeek** – Begleiter im Feld: CrowdSec-Einrichtung auf einem echten Server, der zur Validierung von `collect-crowdsec.sh` diente.
 *   **DeepSeek Flash** – Inhalt der Website auf Englisch, danach die französische, deutsche und spanische Übersetzung der Dokumentation, der Handbuchseiten und der Website.
 *   **Muse Spark 1.3 Contributor** – Gestaltung der Website: Einbindung des Logos, des Favicons und des Diagrammbilds.
-*   **gd2:** Ronan Davalans verstorbener Bruder. Er brachte Ronan Git und dessen Gebrauch bei, beriet dieses Projekt und nahm die erste externe Änderung an dessen README vor (2024-08-07).
+*   **gd2:** Ronan Davalans verstorbener Bruder. Er brachte Ronan Git und dessen Gebrauch bei, beriet bei diesem Projekt und nahm die erste externe Änderung an dessen README vor (2024-08-07).
 
 ---
 
