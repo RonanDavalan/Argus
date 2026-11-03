@@ -12,6 +12,8 @@ updated as people contribute, not at release time.
 *   **Gemini (Google)** — Synthesizer and strategic co-writer. Planning of on-demand multi-machine chart generation and framing of the project's purpose; its claims were cross-checked against the code.
 *   **Gemini (Google), GLM-5.3-Flash Free and Gemini 4 Argon** — Graphic designers. The project's visual identity (mark, icon, favicon): Gemini proposed the first colored version, GLM-5.3-Flash Free added the notion of position that replaced the initial keyhole and drew the SVG, Gemini 4 Argon recentered and improved the final result. Adopted by Ronan Davalan on 2026-11-02.
 *   **DeepSeek** — Field companion. Installed and configured the CrowdSec instance on a real server against which `collect-crowdsec.sh` was validated and corrected.
+*   **DeepSeek Flash** — Site content in English, then the French, German and Spanish translations of the documentation, manual pages and site.
+*   **Muse Spark 1.3 Contributor** — Site styling: integration of the logo, the favicon and the chart image.
 *   **gd2:** Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
 
 ## Heritage
