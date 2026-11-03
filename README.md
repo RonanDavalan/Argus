@@ -112,6 +112,8 @@ Argus is the result of a human-LLM collaboration, with the roles written down as
 *   **Gemini (Google)** — Synthesizer and strategic co-writer: planning and framing of the project's purpose.
 *   **Gemini (Google), GLM-5.3-Flash Free and Gemini 4 Argon** — Graphic designers: the project's visual identity (mark, icon, favicon), adopted by Ronan Davalan on 2026-11-02.
 *   **DeepSeek** — Field companion: CrowdSec setup on a real server used to validate `collect-crowdsec.sh`.
+*   **DeepSeek Flash** — Site content in English, then the French, German and Spanish translations of the documentation, manual pages and site.
+*   **Muse Spark 1.3 Contributor** — Site styling: integration of the logo, the favicon and the chart image.
 *   **gd2:** Ronan Davalan's late brother. He taught Ronan Git and how to use it, advised on this project, and made the first outside edit to its README (2024-08-07).
 
 ---
