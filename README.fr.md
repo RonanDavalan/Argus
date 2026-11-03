@@ -44,7 +44,7 @@ server.example.org (the server)           your desk
 Étape 1, sur le serveur (Debian ou Ubuntu) :
 
 ```bash
-sudo apt install ./argus_1.0.0-13_all.deb
+sudo apt install ./argus_1.0.0-14_all.deb
 ```
 
 

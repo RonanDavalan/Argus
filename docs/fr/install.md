@@ -38,10 +38,10 @@ Un serveur Debian ou Ubuntu avec cron. Le paquet dépend de `gawk` et de `gnuplo
 
 ## Installation
 
-Téléchargez `argus_1.0.0-13_all.deb` depuis la page des versions du dépôt, puis, sur le serveur :
+Téléchargez `argus_1.0.0-14_all.deb` depuis la page des versions du dépôt, puis, sur le serveur :
 
 ```bash
-sudo apt install ./argus_1.0.0-13_all.deb
+sudo apt install ./argus_1.0.0-14_all.deb
 ```
 
 

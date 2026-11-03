@@ -38,10 +38,10 @@ Un servidor Debian o Ubuntu con cron. El paquete depende de `gawk` y `gnuplot-no
 
 ## Instalación
 
-Descargue `argus_1.0.0-13_all.deb` de la página de versiones del repositorio y luego, en el servidor:
+Descargue `argus_1.0.0-14_all.deb` de la página de versiones del repositorio y luego, en el servidor:
 
 ```bash
-sudo apt install ./argus_1.0.0-13_all.deb
+sudo apt install ./argus_1.0.0-14_all.deb
 ```
 
 
