@@ -37,10 +37,10 @@ A Debian or Ubuntu server with cron. The package depends on `gawk` and `gnuplot-
 
 ## Install
 
-Download `argus_1.0.0-12_all.deb` from the releases page of the repository, then, on the server:
+Download `argus_1.0.0-13_all.deb` from the releases page of the repository, then, on the server:
 
 ```bash
-sudo apt install ./argus_1.0.0-12_all.deb
+sudo apt install ./argus_1.0.0-13_all.deb
 ```
 
 The cron jobs start that night: collection at 00:05, charts at 00:15, health check at 00:20. The first chart appears in `/srv/argus/2026/images/` after the first night.
